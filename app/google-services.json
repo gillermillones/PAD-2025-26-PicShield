@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "439233511190",
+    "project_id": "picshield-bc5a3",
+    "storage_bucket": "picshield-bc5a3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439233511190:android:4cb5923171724a31191a37",
+        "android_client_info": {
+          "package_name": "es.ucm.fdi.pad.picshield"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKcrBn2Rj8c2_U91glze59k_EDxdnAN-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
