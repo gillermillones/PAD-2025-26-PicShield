@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
-            String userType = rbParent.isChecked() ? "Padre" : "Profesor";
+            int userType = rbParent.isChecked() ? 1 : 0; // 1 = Padre, 0 = Profesor
 
             if(email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(RegisterActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
@@ -59,28 +59,35 @@ public class RegisterActivity extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if(task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUser user = task.getResult().getUser(); //mAuth.getCurrentUser();
                             if(user != null) {
                                 // Guardar userType en Firestore
                                 Map<String, Object> userMap = new HashMap<>();
                                 userMap.put("email", email);
-                                userMap.put("userType", userType);
+                                userMap.put("userType", userType); // guardamos 1 o 0
 
                                 db.collection("users").document(user.getUid())
                                         .set(userMap)
                                         .addOnSuccessListener(aVoid -> {
-                                            Toast.makeText(RegisterActivity.this, "Registrado como " + userType, Toast.LENGTH_SHORT).show();
+
 
                                             // Redirigir según tipo de usuario
-                                            if("Padre".equals(userType)) {
-                                                startActivity(new Intent(RegisterActivity.this, ParentActivity.class));
+                                            if(userType == 1) {
+                                                // Padre -> vamos a ParentActivity
+                                                Intent intent = new Intent(RegisterActivity.this, ParentActivity.class);
+                                                startActivity(intent);
+                                                Toast.makeText(RegisterActivity.this, "Registrado correctamente como padre", Toast.LENGTH_SHORT).show();
+                                                finish(); // cerramos RegisterActivity
+
                                             } else {
                                                 //startActivity(new Intent(RegisterActivity.this, TeacherActivity.class));
+                                                finish();
+
                                             }
-                                            finish();
                                         })
                                         .addOnFailureListener(e -> {
                                             Toast.makeText(RegisterActivity.this, "Error guardando el tipo de usuario", Toast.LENGTH_SHORT).show();
+                                            e.printStackTrace();
                                         });
                             }
                         } else {
@@ -88,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
         });
+
     }
 
 
