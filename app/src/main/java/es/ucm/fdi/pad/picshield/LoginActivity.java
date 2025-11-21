@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, ParentActivity.class));
                                                 finish();
                                             } else if(dbUserType == 0) { // Profesor
-                                                // startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
+                                               // startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
                                                 finish();
                                             } else {
                                                 Toast.makeText(LoginActivity.this, "Tipo de usuario desconocido", Toast.LENGTH_SHORT).show();

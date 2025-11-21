@@ -46,7 +46,8 @@ dependencies {
     // Firebase Firestore
     implementation("com.google.firebase:firebase-firestore:24.9.1")
 
-
+    // Firebase Storage
+    implementation("com.google.firebase:firebase-storage:21.2.2")
 
 
     implementation(libs.appcompat)

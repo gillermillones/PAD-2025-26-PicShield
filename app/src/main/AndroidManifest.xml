@@ -32,6 +32,11 @@
             android:name=".RegisterActivity"
             android:exported="false" />
 
+        <!-- PARENT ACTIVITY -->
+        <activity
+            android:name=".ParentActivity"
+            android:exported = "false" />
+
     </application>
 
 </manifest>
