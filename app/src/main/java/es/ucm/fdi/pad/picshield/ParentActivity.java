@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ParentActivity extends AppCompatActivity {
 
-
-    private Button btnRegisterChild, btnViewPhotos;
+    private Button btnRegisterChild, btnViewPhotos, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,7 @@ public class ParentActivity extends AppCompatActivity {
 
         btnRegisterChild = findViewById(R.id.btnRegisterChild);
         btnViewPhotos = findViewById(R.id.btnViewPhotos);
+        btnLogout = findViewById(R.id.btnLogout); // Botón de logout
 
         // Botón para registrar un hijo
         btnRegisterChild.setOnClickListener(v -> {
@@ -31,7 +33,14 @@ public class ParentActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        // Botón para cerrar sesión
+        btnLogout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut(); // Cerrar sesión
+            Intent intent = new Intent(ParentActivity.this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
     }
-
-
 }

@@ -45,6 +45,10 @@ public class LoginActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if(task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+                            if(user == null) {
+                                Toast.makeText(this, "Error: usuario no encontrado", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                             db.collection("users").document(user.getUid())
@@ -52,15 +56,16 @@ public class LoginActivity extends AppCompatActivity {
                                     .addOnSuccessListener(documentSnapshot -> {
                                         if(documentSnapshot.exists()) {
                                             Long dbUserType = documentSnapshot.getLong("userType");
+
                                             if(dbUserType == null) {
                                                 Toast.makeText(LoginActivity.this, "Tipo de usuario no definido", Toast.LENGTH_SHORT).show();
                                                 return;
                                             }
-
-                                            if(dbUserType == 1) { // Padre
+                                            int dbUserTypeInt = dbUserType.intValue();
+                                            if(dbUserTypeInt == 1) { // Padre
                                                 startActivity(new Intent(LoginActivity.this, ParentActivity.class));
                                                 finish();
-                                            } else if(dbUserType == 0) { // Profesor
+                                            } else if(dbUserTypeInt == 0) { // Profesor
                                                // startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
                                                 finish();
                                             } else {

@@ -20,19 +20,31 @@ android:layout_height="match_parent">
     android:layout_marginBottom="32dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
-
+    <!--BOTON DE REGISTRAR HIJOS-->
 <Button
     android:id="@+id/btnRegisterChild"
     android:text="Registrar Hijo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"/>
-
+    <!--BOTON DE VER FOTOS-->
 <Button
     android:id="@+id/btnViewPhotos"
     android:text="Ver Fotos"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
+
+    <!--BOTON DE LOGOUT-->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesión"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/design_default_color_error"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
+
 
 
 </LinearLayout>
