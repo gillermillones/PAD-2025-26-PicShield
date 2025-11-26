@@ -78,9 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
                                                 startActivity(intent);
                                                 Toast.makeText(RegisterActivity.this, "Registrado correctamente como padre", Toast.LENGTH_SHORT).show();
                                                 finish(); // cerramos RegisterActivity
-
+                                                //Profesor -> vamos a TeacherActivity
                                             } else {
-                                                //startActivity(new Intent(RegisterActivity.this, TeacherActivity.class));
+                                                Intent intent = new Intent(RegisterActivity.this, TeacherActivity.class);
+                                                startActivity(intent);
+                                                Toast.makeText(RegisterActivity.this, "Registrado correctamente como profesor", Toast.LENGTH_SHORT).show();
                                                 finish();
 
                                             }

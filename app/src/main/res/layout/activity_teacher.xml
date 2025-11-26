@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvTeacherTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Panel del Profesor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <!-- Botón subir foto grupal -->
+        <Button
+            android:id="@+id/btnUploadGroupPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar foto grupal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white"/>
+
+        <!-- Previsualización de imagen -->
+        <ImageView
+            android:id="@+id/imgPreview"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:background="#DDDDDD"
+            android:contentDescription="Vista previa de la imagen" />
+
+        <!-- Botón crear actividad -->
+        <Button
+            android:id="@+id/btnCreateActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crear Actividad"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/teal_700"
+            android:textColor="@android:color/white"/>
+
+        <!-- Botón ver galería -->
+        <Button
+            android:id="@+id/btnViewGallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver Galería"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/purple_700"
+            android:textColor="@android:color/white"/>
+
+        <!-- Botón logout -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -37,17 +37,21 @@ android {
 }
 
 dependencies {
-
+    // Firebase BOM controla versiones
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
     implementation("com.google.firebase:firebase-analytics")
     //implementation("com.google.firebase:firebase-auth")
 
 
     // Firebase Firestore
-    implementation("com.google.firebase:firebase-firestore:24.9.1")
+    implementation("com.google.firebase:firebase-firestore")
 
     // Firebase Storage
-    implementation("com.google.firebase:firebase-storage:21.2.2")
+    implementation("com.google.firebase:firebase-storage")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
 
 
     implementation(libs.appcompat)

@@ -37,6 +37,22 @@
             android:name=".ParentActivity"
             android:exported = "false" />
 
+        <!-- GALLERY ACTIVITY -->
+        <activity
+            android:name=".GalleryActivity"
+            android:exported = "false" />
+
+        <!-- TEACHER ACTIVITY -->
+        <activity
+            android:name=".TeacherActivity"
+            android:exported = "false" />
+
+        <!-- REGISTER CHILD ACTIVITY -->
+        <activity
+            android:name=".RegisterChildActivity"
+            android:exported = "false" />
+
+
     </application>
 
 </manifest>

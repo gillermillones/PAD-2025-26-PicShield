@@ -68,6 +68,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"/>
 
+        <TextView
+            android:text="o"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
+
+
         <!-- Botón de Registro -->
         <Button
             android:id="@+id/btnRegister"
