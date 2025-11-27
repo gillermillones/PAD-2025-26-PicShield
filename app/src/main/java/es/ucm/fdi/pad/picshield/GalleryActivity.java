@@ -2,9 +2,9 @@ package es.ucm.fdi.pad.picshield;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,11 +22,16 @@ public class GalleryActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private GalleryAdapter adapter;
     private List<String> imageUrls = new ArrayList<>();
+    private Button buttonBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+
+        // Botón de volver: exactamente igual que en RegisterActivity
+        buttonBack = findViewById(R.id.btnBack);
+        buttonBack.setOnClickListener(v -> finish());
 
         recyclerView = findViewById(R.id.recyclerGallery);
         progressBar = findViewById(R.id.progressBarGallery);
@@ -44,9 +49,7 @@ public class GalleryActivity extends AppCompatActivity {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images");
 
         storageRef.listAll()
-                .addOnSuccessListener(listResult -> {
-                    fetchDownloadUrls(listResult);
-                })
+                .addOnSuccessListener(this::fetchDownloadUrls)
                 .addOnFailureListener(e -> {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(GalleryActivity.this, "Error cargando imágenes", Toast.LENGTH_SHORT).show();
@@ -69,4 +72,3 @@ public class GalleryActivity extends AppCompatActivity {
         }
     }
 }
-

@@ -1,75 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="24dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="Registrar Hijo"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"/>
-
-    <EditText
-        android:id="@+id/etFirstName"
-        android:hint="Nombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <EditText
-        android:id="@+id/etLastName"
-        android:hint="Apellido"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
+        android:padding="24dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etDNI"
-        android:hint="DNI"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
+        <!-- TÍTULO -->
+        <TextView
+            android:text="Registrar Hijo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp" />
 
-    <ImageView
-        android:id="@+id/ivFacePhoto"
-        android:src="@android:drawable/ic_menu_camera"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"/>
+        <!-- Nombre -->
+        <EditText
+            android:id="@+id/etFirstName"
+            android:hint="Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <CheckBox
-        android:id="@+id/cbAllowPhotos"
-        android:text="Permitir fotos en excursiones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+        <!-- Apellido -->
+        <EditText
+            android:id="@+id/etLastName"
+            android:hint="Apellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
 
-    <Button
-        android:id="@+id/btnSaveChild"
-        android:text="Guardar Hijo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"/>
+        <!-- DNI -->
+        <EditText
+            android:id="@+id/etDNI"
+            android:hint="DNI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
 
-    <TextView
-        android:text="Hijos Registrados"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"/>
+        <!-- FOTO -->
+        <ImageView
+            android:id="@+id/ivFacePhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:src="@android:drawable/ic_menu_camera" />
 
-    <!-- RecyclerView para la lista de hijos -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRegisteredChildren"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:clipToPadding="false"
-        android:paddingBottom="8dp"/>
+        <!-- CHECKBOX -->
+        <CheckBox
+            android:id="@+id/cbAllowPhotos"
+            android:text="Permitir fotos en excursiones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
 
-</LinearLayout>
+        <!-- BOTÓN GUARDAR -->
+        <Button
+            android:id="@+id/btnSaveChild"
+            android:text="Guardar Hijo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" />
+
+        <!-- LISTA DE HIJOS REGISTRADOS -->
+        <TextView
+            android:text="Hijos registrados:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChildren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginTop="12dp" />
+
+        <!-- Botón de volver abajo a la derecha -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:layout_gravity="end"
+            android:layout_margin="16dp" />
+
+
+    </LinearLayout>
+
+</ScrollView>

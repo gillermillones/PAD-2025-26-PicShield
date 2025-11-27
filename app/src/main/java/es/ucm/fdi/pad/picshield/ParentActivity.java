@@ -24,14 +24,14 @@ public class ParentActivity extends AppCompatActivity {
         btnRegisterChild.setOnClickListener(v -> {
             Intent intent = new Intent(ParentActivity.this, RegisterChildActivity.class);
             startActivity(intent);
-            finish();
+            //finish();
         });
 
         // Botón para ver fotos subidas por profesores
         btnViewPhotos.setOnClickListener(v -> {
             Intent intent = new Intent(ParentActivity.this, GalleryActivity.class);
             startActivity(intent);
-            finish();
+            //finish();
         });
 
         // Botón para cerrar sesión
