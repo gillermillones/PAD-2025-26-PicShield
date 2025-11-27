@@ -1,76 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:padding="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTeacherTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:gravity="center_horizontal">
+        android:text="Panel del Profesor"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="40dp"/>
 
-        <!-- Título -->
-        <TextView
-            android:id="@+id/tvTeacherTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Panel del Profesor"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:padding="10dp"/>
+    <!-- VER ACTIVIDADES -->
+    <Button
+        android:id="@+id/btnViewGallery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="15dp"
+        android:text="Ver Actividades"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCreateActivity" />
 
-        <!-- Botón subir foto grupal -->
-        <Button
-            android:id="@+id/btnUploadGroupPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seleccionar foto grupal"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white"/>
+    <!-- LOGOUT -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="15dp"
+        android:text="Cerrar sesión"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnViewGallery" />
 
-        <!-- Previsualización de imagen -->
-        <ImageView
-            android:id="@+id/imgPreview"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            android:background="#DDDDDD"
-            android:contentDescription="Vista previa de la imagen" />
+    <!-- CREAR ACTIVIDAD -->
+    <Button
+        android:id="@+id/btnCreateActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:padding="15dp"
+        android:text="Crear Actividad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTeacherTitle" />
 
-        <!-- Botón crear actividad -->
-        <Button
-            android:id="@+id/btnCreateActivity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crear Actividad"
-            android:layout_marginTop="25dp"
-            android:backgroundTint="@color/teal_700"
-            android:textColor="@android:color/white"/>
+    <!-- BOTÓN VOLVER ABAJO DERECHA -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Botón ver galería -->
-        <Button
-            android:id="@+id/btnViewGallery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ver Galería"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/purple_700"
-            android:textColor="@android:color/white"/>
-
-        <!-- Botón logout -->
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cerrar sesión"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:textColor="@android:color/white"/>
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class CreateActivityDialog extends DialogFragment {
 
-    private EditText etTitle, etDescription;
+    private EditText etTitle, etDescription, etDate;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -27,10 +27,14 @@ public class CreateActivityDialog extends DialogFragment {
         etDescription = new EditText(getContext());
         etDescription.setHint("Descripción");
 
+        etDate = new EditText(getContext());
+        etDate.setHint("Fecha");
+
         LinearLayout layout = new LinearLayout(getContext());
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.addView(etTitle);
         layout.addView(etDescription);
+        layout.addView(etDate);
 
         return new AlertDialog.Builder(requireContext())
                 .setTitle("Crear actividad")
@@ -40,19 +44,37 @@ public class CreateActivityDialog extends DialogFragment {
                 .create();
     }
 
+    public interface OnActivityCreatedListener {
+        void onActivityCreated(String title, String description, String date);
+    }
+
+    private OnActivityCreatedListener listener;
+    public void setOnActivityCreatedListener(OnActivityCreatedListener l) {
+        this.listener = l;
+    }
+
     private void saveActivity() {
         String title = etTitle.getText().toString().trim();
         String desc = etDescription.getText().toString().trim();
+        String date = etDate.getText().toString().trim();
 
         if (title.isEmpty()) return;
 
         Map<String, Object> activity = new HashMap<>();
         activity.put("title", title);
         activity.put("description", desc);
+        activity.put("date", date);
 
         FirebaseFirestore.getInstance()
                 .collection("activities")
                 .add(activity);
+
+        listener.onActivityCreated(title, desc, date);
+        dismiss();
+
     }
+
+
+
 }
 
