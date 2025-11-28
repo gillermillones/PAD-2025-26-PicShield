@@ -3,46 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="16dp"
     android:background="#FFFFFF">
 
     <!-- TÍTULO -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Subir Fotos de la Actividad"
+        android:text="Fotos de la actividad"
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="12dp" />
 
-    <!-- BOTÓN SELECCIONAR IMÁGENES -->
+    <!-- SCROLL CON TODAS LAS FOTOS -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/previewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp" />
+    </ScrollView>
+
+    <!-- BOTÓN SELECCIONAR -->
     <Button
         android:id="@+id/btnPickImages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Seleccionar Imágenes"
-        android:layout_marginBottom="15dp" />
-
-    <!-- PREVIEW DE IMÁGENES EN SCROLL HORIZONTAL -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:fillViewport="true">
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/previewContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp" />
-
-        </HorizontalScrollView>
-    </ScrollView>
+        android:layout_marginTop="10dp" />
 
     <!-- BOTÓN SUBIR -->
     <Button
@@ -50,15 +45,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Subir Fotos"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginTop="8dp" />
 
     <!-- BOTÓN VOLVER -->
     <Button
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Volver"
-        android:layout_gravity="end" />
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

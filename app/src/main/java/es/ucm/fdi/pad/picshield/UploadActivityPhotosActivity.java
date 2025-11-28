@@ -11,6 +11,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -27,9 +28,7 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
     private Button btnPickImages, btnUpload, btnBack;
     private LinearLayout previewContainer;
 
-    // Lista de imágenes seleccionadas
     private final List<Uri> selectedImages = new ArrayList<>();
-
     private FirebaseFirestore db;
 
     // Launcher para seleccionar múltiples imágenes
@@ -67,12 +66,50 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
         // Subir imágenes
         btnUpload.setOnClickListener(v -> uploadAllImages());
 
-        // Botón "volver"
+        // Botón volver
         btnBack.setOnClickListener(v -> finish());
+
+        // Cargar fotos ya subidas
+        loadExistingPhotos();
     }
 
     /**
-     * Muestra miniaturas de las imágenes seleccionadas.
+     * Carga fotos ya guardadas en Firestore
+     */
+    private void loadExistingPhotos() {
+        previewContainer.removeAllViews();
+
+        db.collection("activities")
+                .document(activityId)
+                .collection("photos")
+                .orderBy("timestamp")
+                .get()
+                .addOnSuccessListener(query -> {
+                    for (var doc : query.getDocuments()) {
+                        String url = doc.getString("url");
+                        addPhotoToLayout(url);
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error cargando fotos", Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    /**
+     * Añade una imagen (de URL Cloudinary) al layout vertical
+     */
+    private void addPhotoToLayout(String url) {
+        ImageView iv = new ImageView(this);
+        iv.setAdjustViewBounds(true);
+        iv.setPadding(8, 16, 8, 16);
+
+        Glide.with(this).load(url).into(iv);
+
+        previewContainer.addView(iv);
+    }
+
+    /**
+     * Muestra miniaturas de las imágenes seleccionadas antes de subirlas
      */
     private void showPreviewImages() {
         previewContainer.removeAllViews();
@@ -82,7 +119,7 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
             iv.setImageURI(imgUri);
             iv.setAdjustViewBounds(true);
             iv.setMaxHeight(350);
-            iv.setPadding(8, 8, 8, 8);
+            iv.setPadding(8, 16, 8, 16);
 
             previewContainer.addView(iv);
         }
@@ -90,7 +127,6 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
 
     /**
      * Sube todas las imágenes seleccionadas a Cloudinary
-     * y guarda las URLs en Firestore.
      */
     private void uploadAllImages() {
         if (selectedImages.isEmpty()) {
@@ -106,22 +142,17 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
     }
 
     /**
-     * Sube una sola imagen.
+     * Sube una sola imagen
      */
     private void uploadSingleImage(Uri imgUri) {
         MediaManager.get().upload(imgUri)
                 .callback(new UploadCallback() {
-                    @Override
-                    public void onStart(String requestId) {}
-
-                    @Override
-                    public void onProgress(String requestId, long bytes, long totalBytes) {}
+                    @Override public void onStart(String requestId) {}
+                    @Override public void onProgress(String requestId, long bytes, long totalBytes) {}
 
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
-
                         String url = resultData.get("secure_url").toString();
-
                         savePhotoInFirestore(url);
                     }
 
@@ -131,17 +162,15 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
                                 "Error subiendo imagen", Toast.LENGTH_SHORT).show();
                     }
 
-                    @Override
-                    public void onReschedule(String requestId, ErrorInfo error) {}
+                    @Override public void onReschedule(String requestId, ErrorInfo error) {}
                 })
                 .dispatch();
     }
 
     /**
-     * Guarda la URL de una foto dentro de la actividad.
+     * Guarda la URL de una foto en Firestore y la muestra automáticamente
      */
     private void savePhotoInFirestore(String url) {
-
         Map<String, Object> photoData = new HashMap<>();
         photoData.put("url", url);
         photoData.put("timestamp", System.currentTimeMillis());
@@ -150,12 +179,9 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
                 .document(activityId)
                 .collection("photos")
                 .add(photoData)
-                .addOnSuccessListener(a -> {
-                    Toast.makeText(this, "Foto guardada", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error guardando foto", Toast.LENGTH_SHORT).show();
-                });
+                .addOnSuccessListener(a -> addPhotoToLayout(url))
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error guardando foto", Toast.LENGTH_SHORT).show()
+                );
     }
 }
-
