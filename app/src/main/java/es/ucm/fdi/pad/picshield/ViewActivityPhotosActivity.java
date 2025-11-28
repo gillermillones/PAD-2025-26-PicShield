@@ -1,6 +1,7 @@
 package es.ucm.fdi.pad.picshield;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
     private String activityId;
     private LinearLayout previewContainer;
     private FirebaseFirestore db;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +24,16 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_activity_photos);
 
         db = FirebaseFirestore.getInstance();
-        previewContainer = findViewById(R.id.previewContainer);
 
+        previewContainer = findViewById(R.id.photosContainer);
+        btnBack = findViewById(R.id.btnBack);
+
+        // Volver atrás
+        btnBack.setOnClickListener(v -> finish());
+
+        // Recibir el ID de la actividad
         activityId = getIntent().getStringExtra("activityId");
+
         if (activityId == null) {
             Toast.makeText(this, "Error: actividad no encontrada", Toast.LENGTH_SHORT).show();
             finish();
@@ -34,13 +43,15 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
         loadPhotos();
     }
 
+    /**
+     * Carga las fotos subidas por el profesor
+     */
     private void loadPhotos() {
         previewContainer.removeAllViews();
 
         db.collection("activities")
                 .document(activityId)
                 .collection("photos")
-                .orderBy("timestamp")
                 .get()
                 .addOnSuccessListener(query -> {
                     if (query.isEmpty()) {
@@ -53,11 +64,14 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
                         addPhotoToLayout(url);
                     }
                 })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error cargando fotos", Toast.LENGTH_SHORT).show()
-                );
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error cargando fotos", Toast.LENGTH_SHORT).show();
+                });
     }
 
+    /**
+     * Muestra cada foto en pantalla
+     */
     private void addPhotoToLayout(String url) {
         ImageView iv = new ImageView(this);
         iv.setAdjustViewBounds(true);

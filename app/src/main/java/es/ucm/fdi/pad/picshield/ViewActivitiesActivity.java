@@ -2,7 +2,7 @@ package es.ucm.fdi.pad.picshield;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +15,7 @@ public class ViewActivitiesActivity extends AppCompatActivity {
 
     private LinearLayout activitiesContainer;
     private FirebaseFirestore db;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,11 @@ public class ViewActivitiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_activities);
 
         activitiesContainer = findViewById(R.id.activitiesContainer);
+        btnBack = findViewById(R.id.btnBack);
         db = FirebaseFirestore.getInstance();
+
+        // Botón volver
+        btnBack.setOnClickListener(v -> finish());
 
         loadActivities();
     }
@@ -31,7 +36,6 @@ public class ViewActivitiesActivity extends AppCompatActivity {
         activitiesContainer.removeAllViews();
 
         db.collection("activities")
-                .orderBy("timestamp")
                 .get()
                 .addOnSuccessListener(query -> {
                     if (query.isEmpty()) {
@@ -40,19 +44,18 @@ public class ViewActivitiesActivity extends AppCompatActivity {
                     }
 
                     for (var doc : query.getDocuments()) {
-                        String activityId = doc.getId();
-                        String name = doc.getString("name"); // suponer que cada actividad tiene un campo "name"
 
-                        // Crear TextView clickable para cada actividad
+                        String activityId = doc.getId();
+                        String title = doc.getString("title");
+
                         TextView tv = new TextView(this);
-                        tv.setText(name != null ? name : "Actividad sin nombre");
+                        tv.setText(title != null ? title : "Actividad sin título");
                         tv.setTextSize(18f);
-                        tv.setPadding(16, 16, 16, 16);
-                        tv.setClickable(true);
+                        tv.setPadding(30, 30, 30, 30);
                         tv.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
+                        tv.setClickable(true);
 
                         tv.setOnClickListener(v -> {
-                            // Abrir galería de fotos de esa actividad
                             Intent intent = new Intent(ViewActivitiesActivity.this, ViewActivityPhotosActivity.class);
                             intent.putExtra("activityId", activityId);
                             startActivity(intent);
@@ -61,8 +64,8 @@ public class ViewActivitiesActivity extends AppCompatActivity {
                         activitiesContainer.addView(tv);
                     }
                 })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error cargando actividades", Toast.LENGTH_SHORT).show()
-                );
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error cargando actividades", Toast.LENGTH_SHORT).show();
+                });
     }
 }

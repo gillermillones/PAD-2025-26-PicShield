@@ -60,10 +60,16 @@
             android:name=".UploadActivityPhotosActivity"
             android:exported="false"/>
 
-        <!-- View Activities para el padre -->
+        <!-- View Photos Activities para el padre -->
         <activity
             android:name=".ViewActivityPhotosActivity"
             android:exported="false" />
+
+        <!-- View lista de activities -->
+        <activity
+            android:name=".ViewActivitiesActivity"
+            android:exported="false"/>
+
 
 
 
