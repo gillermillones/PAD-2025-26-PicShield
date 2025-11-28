@@ -3,13 +3,14 @@ package es.ucm.fdi.pad.picshield;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ParentActivity extends AppCompatActivity {
 
-    private Button btnRegisterChild, btnViewPhotos, btnLogout;
+    private Button btnRegisterChild, btnViewActivities, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,21 +18,19 @@ public class ParentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_parent);
 
         btnRegisterChild = findViewById(R.id.btnRegisterChild);
-        btnViewPhotos = findViewById(R.id.btnViewPhotos);
-        btnLogout = findViewById(R.id.btnLogout); // Botón de logout
+        btnViewActivities = findViewById(R.id.btnViewPhotos); // cambiar texto en layout si quieres "Ver Actividades"
+        btnLogout = findViewById(R.id.btnLogout);
 
         // Botón para registrar un hijo
         btnRegisterChild.setOnClickListener(v -> {
             Intent intent = new Intent(ParentActivity.this, RegisterChildActivity.class);
             startActivity(intent);
-            //finish();
         });
 
-        // Botón para ver fotos subidas por profesores
-        btnViewPhotos.setOnClickListener(v -> {
-            Intent intent = new Intent(ParentActivity.this, GalleryActivity.class);
+        // Botón para ver lista de actividades (solo lectura)
+        btnViewActivities.setOnClickListener(v -> {
+            Intent intent = new Intent(ParentActivity.this, ViewActivitiesActivity.class);
             startActivity(intent);
-            //finish();
         });
 
         // Botón para cerrar sesión

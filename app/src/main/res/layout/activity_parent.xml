@@ -30,7 +30,7 @@ android:layout_height="match_parent">
     <!--BOTON DE VER FOTOS-->
 <Button
     android:id="@+id/btnViewPhotos"
-    android:text="Ver Fotos"
+    android:text="Ver Actividades"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
 
