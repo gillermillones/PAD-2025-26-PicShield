@@ -54,6 +54,12 @@
             android:name=".RegisterChildActivity"
             android:exported = "false" />
 
+        <!-- Upload Activity Photos Activity -->
+        <activity
+            android:name=".UploadActivityPhotosActivity"
+            android:exported="false"/>
+
+
 
     </application>
 
