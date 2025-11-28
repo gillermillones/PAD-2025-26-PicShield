@@ -55,27 +55,38 @@ public class LoginActivity extends AppCompatActivity {
                                     .get()
                                     .addOnSuccessListener(documentSnapshot -> {
                                         if(documentSnapshot.exists()) {
+
                                             Long dbUserType = documentSnapshot.getLong("userType");
 
                                             if(dbUserType == null) {
                                                 Toast.makeText(LoginActivity.this, "Tipo de usuario no definido", Toast.LENGTH_SHORT).show();
                                                 return;
                                             }
-                                            int dbUserTypeInt = dbUserType.intValue();
-                                            if(dbUserTypeInt == 1) { // Padre
+
+                                            int type = dbUserType.intValue(); // 1 = padre, 0 = profesor
+
+                                            if(type == 1) {
+                                                // PADRE
                                                 startActivity(new Intent(LoginActivity.this, ParentActivity.class));
                                                 finish();
-                                            } else if(dbUserTypeInt == 0) { // Profesor
-                                               // startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
+                                            }
+                                            else if(type == 0) {
+                                                // PROFESOR
+                                                startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
                                                 finish();
-                                            } else {
+                                            }
+                                            else {
                                                 Toast.makeText(LoginActivity.this, "Tipo de usuario desconocido", Toast.LENGTH_SHORT).show();
                                             }
+
                                         } else {
                                             Toast.makeText(LoginActivity.this, "Documento de usuario no existe", Toast.LENGTH_SHORT).show();
                                         }
                                     })
-                                    .addOnFailureListener(e -> Toast.makeText(LoginActivity.this, "Error al obtener tipo de usuario", Toast.LENGTH_SHORT).show());
+                                    .addOnFailureListener(e ->
+                                            Toast.makeText(LoginActivity.this, "Error al obtener tipo de usuario", Toast.LENGTH_SHORT).show()
+                                    );
+
 
                         } else {
                             Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

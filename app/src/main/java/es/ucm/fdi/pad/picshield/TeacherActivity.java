@@ -3,6 +3,7 @@ package es.ucm.fdi.pad.picshield;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,8 +50,7 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     /**
-     * Abre el diálogo que ya tienes implementado para crear actividades.
-     * Cuando el usuario guarda la actividad, aquí se recibe el resultado.
+     * Abre el diálogo para crear actividades
      */
     private void openCreateActivityDialog() {
         CreateActivityDialog dialog = new CreateActivityDialog();
@@ -63,7 +63,7 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     /**
-     * Crea la actividad en Firestore y después abre la pantalla para subir fotos.
+     * Crea la actividad en Firestore y muestra mensaje
      */
     private void createActivityInFirestore(String title, String description, String date) {
 
@@ -78,10 +78,18 @@ public class TeacherActivity extends AppCompatActivity {
                 .addOnSuccessListener(docRef -> {
                     String activityId = docRef.getId();
 
-                    // 👉 IMPORTANTE: Abrimos la pantalla nueva para subir fotos.
+                    Toast.makeText(TeacherActivity.this,
+                            "Actividad creada correctamente", Toast.LENGTH_SHORT).show();
+
+                    // Abrimos la pantalla para subir fotos
                     Intent i = new Intent(TeacherActivity.this, UploadActivityPhotosActivity.class);
                     i.putExtra("activityId", activityId);
                     startActivity(i);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(TeacherActivity.this,
+                            "Error creando actividad", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 });
     }
 }

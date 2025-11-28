@@ -1,56 +1,63 @@
 package es.ucm.fdi.pad.picshield;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-
 import java.util.List;
+import java.util.Map;
 
-public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.PhotoViewHolder> {
+public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ActivityViewHolder> {
 
     private Context context;
-    private List<String> photoUrls;
+    private List<Map<String, Object>> activities; // title, date, id
 
-    public GalleryAdapter(Context context, List<String> photoUrls) {
+    public GalleryAdapter(Context context, List<Map<String, Object>> activities) {
         this.context = context;
-        this.photoUrls = photoUrls;
+        this.activities = activities;
     }
 
     @NonNull
     @Override
-    public PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_gallery, parent, false);
-        return new PhotoViewHolder(view);
+    public ActivityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_activity, parent, false);
+        return new ActivityViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhotoViewHolder holder, int position) {
-        String url = photoUrls.get(position);
+    public void onBindViewHolder(@NonNull ActivityViewHolder holder, int position) {
+        Map<String, Object> activity = activities.get(position);
 
-        Glide.with(context)
-                .load(url)
-                .into(holder.imgPhoto);
+        String title = (String) activity.get("title");
+        String date = (String) activity.get("date");
+        String id = (String) activity.get("id");
+
+        holder.tvTitle.setText(title);
+        holder.tvDate.setText("Fecha: " + date);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, UploadActivityPhotosActivity.class);
+            intent.putExtra("activityId", id);
+            context.startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return photoUrls.size();
+        return activities.size();
     }
 
-    public static class PhotoViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgPhoto;
+    public static class ActivityViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTitle, tvDate;
 
-        public PhotoViewHolder(@NonNull View itemView) {
+        public ActivityViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgPhoto = itemView.findViewById(R.id.imgPhoto);
+            tvTitle = itemView.findViewById(R.id.tvActivityTitle);
+            tvDate = itemView.findViewById(R.id.tvActivityDate);
         }
     }
 }
-
