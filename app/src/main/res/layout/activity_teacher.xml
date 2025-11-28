@@ -1,63 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:background="@color/ps_bg"
+    android:paddingTop="?attr/actionBarSize"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:fitsSystemWindows="true">
 
-    <!-- Título -->
-    <TextView
-        android:id="@+id/tvTeacherTitle"
+    <!-- Card contenedor central -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Panel del Profesor"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="#00000000"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="40dp"/>
+        android:backgroundTint="@color/ps_card">
 
-    <!-- VER ACTIVIDADES -->
-    <Button
-        android:id="@+id/btnViewGallery"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:padding="15dp"
-        android:text="Ver Actividades"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCreateActivity" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
 
-    <!-- LOGOUT -->
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:padding="15dp"
-        android:text="Cerrar sesión"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnViewGallery" />
+            <TextView
+                android:id="@+id/tvTeacherTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Panel del Profesor"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="6dp"/>
 
-    <!-- CREAR ACTIVIDAD -->
-    <Button
-        android:id="@+id/btnCreateActivity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:padding="15dp"
-        android:text="Crear Actividad"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTeacherTitle" />
+            <TextView
+                android:id="@+id/tvTeacherSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestiona actividades y fotos de tus alumnos"
+                android:textSize="14sp"
+                android:textColor="@color/ps_text_secondary"
+                android:layout_marginBottom="20dp"/>
 
+            <!-- Botones como bloque vertical -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCreateActivity"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Crear actividad"
+                android:textAllCaps="true"
+                app:cornerRadius="12dp"
+                app:iconGravity="textStart"
+                android:layout_marginBottom="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:backgroundTint="@color/ps_primary"
+                android:textColor="@color/ps_on_primary" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewGallery"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Ver actividades"
+                android:textAllCaps="true"
+                app:cornerRadius="12dp"
+                android:layout_marginBottom="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:backgroundTint="@color/ps_card"
+                android:textColor="@color/ps_primary"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/ps_primary"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Cerrar sesiÃ³n"
+                android:textAllCaps="true"
+                app:cornerRadius="12dp"
+                android:backgroundTint="@color/ps_logout"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="6dp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

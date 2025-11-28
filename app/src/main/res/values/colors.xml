@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ps_primary">#6A00E6</color>
+    <color name="ps_on_primary">#FFFFFF</color>
+    <color name="ps_accent">#7C4DFF</color>
+    <color name="ps_logout">#D32F2F</color>
+    <color name="ps_bg">#F6F7FB</color>
+    <color name="ps_card">#FFFFFF</color>
+    <color name="ps_text_secondary">#757575</color>
 </resources>

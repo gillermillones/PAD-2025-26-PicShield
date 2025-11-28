@@ -1,51 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/ps_bg"
+    android:paddingTop="?attr/actionBarSize"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:fitsSystemWindows="true">
 
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical"
-android:padding="24dp"
-android:gravity="center"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-
-<TextView
-    android:text="Pantalla de Padre"
-    android:textSize="24sp"
-    android:textStyle="bold"
-    android:layout_marginBottom="32dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
-    <!--BOTON DE REGISTRAR HIJOS-->
-<Button
-    android:id="@+id/btnRegisterChild"
-    android:text="Registrar Hijo"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"/>
-    <!--BOTON DE VER FOTOS-->
-<Button
-    android:id="@+id/btnViewPhotos"
-    android:text="Ver Actividades"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
-
-    <!--BOTON DE LOGOUT-->
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
+    <!-- Card contenedor central -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardContainerParent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cerrar sesión"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/design_default_color_error"
-        android:textColor="@android:color/white"
-        android:padding="12dp"/>
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="#00000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/ps_card">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
 
+            <TextView
+                android:id="@+id/tvParentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Panel del Padre"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="6dp"/>
 
-</LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvParentSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestiona a tus hijos y sus fotos"
+                android:textSize="14sp"
+                android:textColor="@color/ps_text_secondary"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Botones estilo Material -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegisterChild"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Registrar Hijo"
+                android:textAllCaps="true"
+                app:cornerRadius="12dp"
+                app:iconGravity="textStart"
+                android:layout_marginBottom="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:backgroundTint="@color/ps_primary"
+                android:textColor="@color/ps_on_primary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewPhotos"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Ver Actividades"
+                android:textAllCaps="true"
+                app:cornerRadius="12dp"
+                android:layout_marginBottom="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:backgroundTint="@color/ps_card"
+                android:textColor="@color/ps_primary"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/ps_primary"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Cerrar sesiÃ³n"
+                android:textAllCaps="true"
+                app:cornerRadius="12dp"
+                android:backgroundTint="@color/ps_logout"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="6dp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
