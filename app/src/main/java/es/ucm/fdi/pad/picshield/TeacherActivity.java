@@ -15,10 +15,11 @@ import java.util.Map;
 
 public class TeacherActivity extends AppCompatActivity {
 
-    private Button btnCreateActivity, btnViewGallery, btnLogout;
+    private Button btnCreateActivity, btnViewGallery, btnLogout, btnDeleteFaceSet; // <--- Añadido btnDeleteFaceSet
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private FaceManager faceManager; // <--- Añadido FaceManager
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,13 @@ public class TeacherActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        // Inicializamos FaceManager
+        faceManager = new FaceManager(this, new FaceApiClient());
+
         btnCreateActivity = findViewById(R.id.btnCreateActivity);
         btnViewGallery = findViewById(R.id.btnViewGallery);
         btnLogout = findViewById(R.id.btnLogout);
+        btnDeleteFaceSet = findViewById(R.id.btnDeleteFaceSet); // <--- Enlazar botón
 
         // --- CREAR ACTIVIDAD ---
         btnCreateActivity.setOnClickListener(v -> openCreateActivityDialog());
@@ -41,6 +46,30 @@ public class TeacherActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // --- BORRAR FACESET (RESET) ---
+        btnDeleteFaceSet.setOnClickListener(v -> {
+            Toast.makeText(this, "Borrando FaceSet...", Toast.LENGTH_SHORT).show();
+            btnDeleteFaceSet.setEnabled(false); // Evitar doble click
+
+            faceManager.deleteFaceSet(new FaceManager.ProcessCallback() {
+                @Override
+                public void onSuccess(String message) {
+                    runOnUiThread(() -> {
+                        Toast.makeText(TeacherActivity.this, message, Toast.LENGTH_LONG).show();
+                        btnDeleteFaceSet.setEnabled(true);
+                    });
+                }
+
+                @Override
+                public void onError(String error) {
+                    runOnUiThread(() -> {
+                        Toast.makeText(TeacherActivity.this, "Error: " + error, Toast.LENGTH_LONG).show();
+                        btnDeleteFaceSet.setEnabled(true);
+                    });
+                }
+            });
+        });
+
         // --- LOGOUT ---
         btnLogout.setOnClickListener(v -> {
             mAuth.signOut();
@@ -49,23 +78,16 @@ public class TeacherActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Abre el diálogo para crear actividades
-     */
     private void openCreateActivityDialog() {
         CreateActivityDialog dialog = new CreateActivityDialog();
-
         dialog.setOnActivityCreatedListener((title, description, date) -> {
             createActivityInFirestore(title, description, date);
         });
-
         dialog.show(getSupportFragmentManager(), "CreateActivityDialog");
     }
 
-    /**
-     * Crea la actividad en Firestore y muestra mensaje
-     */
     private void createActivityInFirestore(String title, String description, String date) {
+        if(mAuth.getCurrentUser() == null) return;
 
         Map<String, Object> activityData = new HashMap<>();
         activityData.put("title", title);
@@ -77,18 +99,13 @@ public class TeacherActivity extends AppCompatActivity {
                 .add(activityData)
                 .addOnSuccessListener(docRef -> {
                     String activityId = docRef.getId();
-
-                    Toast.makeText(TeacherActivity.this,
-                            "Actividad creada correctamente", Toast.LENGTH_SHORT).show();
-
-                    // Abrimos la pantalla para subir fotos
+                    Toast.makeText(TeacherActivity.this, "Actividad creada correctamente", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(TeacherActivity.this, UploadActivityPhotosActivity.class);
                     i.putExtra("activityId", activityId);
                     startActivity(i);
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(TeacherActivity.this,
-                            "Error creando actividad", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TeacherActivity.this, "Error creando actividad", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 });
     }
