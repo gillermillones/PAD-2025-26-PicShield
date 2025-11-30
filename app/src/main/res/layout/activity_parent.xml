@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ps_bg"
+    android:background="#F5F5F5"
     android:paddingTop="?attr/actionBarSize"
     android:paddingBottom="16dp"
     android:paddingStart="16dp"
@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/ps_card">
+        android:backgroundTint="@android:color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,19 +39,19 @@
                 android:id="@+id/tvParentTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Panel del Padre"
+                android:text="@string/parent_title"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black"
+                android:textColor="#333333"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/tvParentSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gestiona a tus hijos y sus fotos"
+                android:text="@string/parent_subtitle"
                 android:textSize="14sp"
-                android:textColor="@color/ps_text_secondary"
+                android:textColor="#757575"
                 android:layout_marginBottom="32dp"/>
 
             <com.google.android.material.button.MaterialButton
@@ -59,31 +59,33 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="Registrar Hijo"
+                android:text="@string/btn_register_child"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:textColor="@android:color/white"
                 app:icon="@android:drawable/ic_input_add"
                 app:iconGravity="textStart"
+                app:iconTint="@android:color/white"
                 app:cornerRadius="16dp"
                 android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/ps_primary"
-                android:textColor="@color/ps_on_primary" />
+                android:backgroundTint="#4A148C"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnViewPhotos"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="Ver Actividades"
+                android:text="@string/btn_view_activities"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:textColor="#4A148C"
                 app:icon="@android:drawable/ic_menu_gallery"
                 app:iconGravity="textStart"
+                app:iconTint="#4A148C"
                 app:cornerRadius="16dp"
                 android:layout_marginBottom="24dp"
-                app:strokeColor="@color/ps_primary"
-                app:strokeWidth="1dp"
-                android:textColor="@color/ps_primary"/>
+                app:strokeColor="#4A148C"
+                app:strokeWidth="1dp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -95,7 +97,7 @@
                 android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Cerrar sesión"
+                android:text="@string/btn_logout"
                 android:textSize="12sp"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 app:cornerRadius="12dp"

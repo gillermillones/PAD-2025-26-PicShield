@@ -1,13 +1,92 @@
 <resources>
     <string name="app_name">PicShield</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="btn_back_general">Volver</string>
+    <string name="error_jpg_toast">Error: La imagen debe ser JPG</string>
+
+    <string name="login_welcome">Bienvenido de nuevo</string>
+    <string name="login_subtitle_land">Gestiona las fotos escolares de forma segura</string>
+    <string name="login_user_type_label">¿Cómo quieres entrar?</string>
+    <string name="login_role_parent">Soy Padre</string>
+    <string name="login_role_teacher">Soy Profesor</string>
+    <string name="login_role_parent_short">Padre</string>
+    <string name="login_role_teacher_short">Profesor</string>
+    <string name="login_hint_email">Correo electrónico</string>
+    <string name="login_hint_password">Contraseña</string>
+    <string name="login_btn_enter">Iniciar Sesión</string>
+    <string name="login_btn_enter_short">Entrar</string>
+    <string name="login_separator">O</string>
+    <string name="login_btn_create_account">Crear cuenta nueva</string>
+    <string name="login_btn_create_short">Crear</string>
+
+    <string name="register_title">Crear Cuenta</string>
+    <string name="register_subtitle">Únete a PicShield</string>
+    <string name="register_subtitle_land">Únete a PicShield y gestiona\ntus recuerdos</string>
+    <string name="register_user_type_label">Soy...</string>
+    <string name="register_role_parent">Padre</string>
+    <string name="register_role_teacher">Profesor</string>
+    <string name="register_hint_email">Tu correo electrónico</string>
+    <string name="register_hint_password">Elige una contraseña</string>
+    <string name="register_btn_signup">Registrarse</string>
+    <string name="register_btn_back">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="register_btn_back_short">Volver</string>
+
+    <string name="reg_child_title">Registrar Hijo</string>
+    <string name="reg_child_title_land">Nuevo Perfil</string>
+    <string name="reg_child_subtitle">Completa los datos del perfil</string>
+    <string name="reg_child_subtitle_land">Datos del niño/a</string>
+    <string name="reg_child_format_warning">Formato requerido: JPG</string>
+    <string name="reg_child_format_warning_short">Formato: JPG</string>
+    <string name="reg_child_hint_name">Nombre</string>
+    <string name="reg_child_hint_surname">Apellido</string>
+    <string name="reg_child_hint_dni">DNI</string>
+    <string name="reg_child_hint_dni_example">12345678X</string>
+    <string name="reg_child_cb_photos">Permitir fotos en excursiones</string>
+    <string name="reg_child_cb_photos_short">Permitir fotos</string>
+    <string name="reg_child_btn_save">Guardar Hijo</string>
+    <string name="reg_child_btn_save_short">Guardar</string>
+    <string name="reg_child_list_header">Hijos registrados:</string>
+    <string name="reg_child_btn_back">Volver atrás</string>
+    <string name="reg_child_btn_back_short">Volver</string>
+
+    <string name="teacher_title">Panel del Profesor</string>
+    <string name="teacher_title_land">Panel del\nProfesor</string>
+    <string name="teacher_subtitle">Gestiona actividades y fotos de tus alumnos</string>
+    <string name="teacher_subtitle_land">Gestiona actividades y fotos</string>
+
+    <string name="parent_title">Panel del Padre</string>
+    <string name="parent_title_land">Panel del\nPadre</string>
+    <string name="parent_subtitle">Gestiona a tus hijos y sus fotos</string>
+    <string name="parent_subtitle_land">Gestiona a tus hijos y fotos</string>
+
+    <string name="btn_create_activity">Crear actividad</string>
+    <string name="btn_view_activities">Ver actividades</string>
+    <string name="btn_register_child">Registrar Hijo</string>
+    <string name="btn_reset_privacy">Reset Privacidad (Borrar Faceset)</string>
+    <string name="btn_reset_privacy_lines">Reset Privacidad\n(Borrar Faceset)</string>
+    <string name="btn_reset_privacy_land">Reset Privacidad</string>
+    <string name="btn_logout">Cerrar sesión</string>
+
+    <string name="list_activities_title">Actividades Disponibles</string>
+    <string name="list_activities_title_land">Actividades\nDisponibles</string>
+    <string name="list_activities_subtitle">Selecciona una actividad de la lista</string>
+    <string name="list_activities_subtitle_short">Selecciona una opción</string>
+    <string name="teacher_list_title">Lista de Actividades</string>
+    <string name="teacher_list_title_land">Lista de\nActividades</string>
+    <string name="teacher_list_subtitle">Selecciona una actividad para ver las fotos</string>
+
+    <string name="upload_title">Subir Fotos</string>
+    <string name="upload_subtitle">Selecciona imágenes (Solo formato JPG)</string>
+    <string name="btn_pick_gallery">1. Seleccionar de Galería</string>
+    <string name="btn_pick_gallery_short">1. Galería</string>
+    <string name="btn_upload_action">2. Subir Fotos</string>
+    <string name="btn_upload_action_short">2. Subir</string>
+    <string name="btn_cancel">Cancelar y Volver</string>
+    <string name="btn_actions_header">Acciones</string>
+
+    <string name="view_photos_title">Fotos de la Actividad</string>
+    <string name="view_photos_title_land">Fotos de la\nActividad</string>
+    <string name="view_photos_subtitle">Recuerdos compartidos por el profesor</string>
+    <string name="view_photos_subtitle_short">Recuerdos del evento</string>
+
 </resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PicShield</string>
+
+    <string name="btn_back_general">Back</string>
+    <string name="error_jpg_toast">Error: Image must be JPG</string>
+
+    <string name="login_welcome">Welcome back</string>
+    <string name="login_subtitle_land">Manage school photos securely</string>
+    <string name="login_user_type_label">How do you want to login?</string>
+    <string name="login_role_parent">I am a Parent</string>
+    <string name="login_role_teacher">I am a Teacher</string>
+    <string name="login_role_parent_short">Parent</string>
+    <string name="login_role_teacher_short">Teacher</string>
+    <string name="login_hint_email">Email address</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_btn_enter">Log In</string>
+    <string name="login_btn_enter_short">Login</string>
+    <string name="login_separator">OR</string>
+    <string name="login_btn_create_account">Create new account</string>
+    <string name="login_btn_create_short">Sign Up</string>
+
+    <string name="register_title">Create Account</string>
+    <string name="register_subtitle">Join PicShield</string>
+    <string name="register_subtitle_land">Join PicShield and manage\nyour memories</string>
+    <string name="register_user_type_label">I am...</string>
+    <string name="register_role_parent">Parent</string>
+    <string name="register_role_teacher">Teacher</string>
+    <string name="register_hint_email">Your email address</string>
+    <string name="register_hint_password">Choose a password</string>
+    <string name="register_btn_signup">Sign Up</string>
+    <string name="register_btn_back">Already have an account? Log In</string>
+    <string name="register_btn_back_short">Back</string>
+
+    <string name="reg_child_title">Register Child</string>
+    <string name="reg_child_title_land">New Profile</string>
+    <string name="reg_child_subtitle">Complete profile details</string>
+    <string name="reg_child_subtitle_land">Child details</string>
+    <string name="reg_child_format_warning">Format required: JPG</string>
+    <string name="reg_child_format_warning_short">Format: JPG</string>
+    <string name="reg_child_hint_name">First Name</string>
+    <string name="reg_child_hint_surname">Last Name</string>
+    <string name="reg_child_hint_dni">ID / DNI</string>
+    <string name="reg_child_hint_dni_example">12345678X</string>
+    <string name="reg_child_cb_photos">Allow photos on trips</string>
+    <string name="reg_child_cb_photos_short">Allow photos</string>
+    <string name="reg_child_btn_save">Save Child</string>
+    <string name="reg_child_btn_save_short">Save</string>
+    <string name="reg_child_list_header">Registered children:</string>
+    <string name="reg_child_btn_back">Go back</string>
+    <string name="reg_child_btn_back_short">Back</string>
+
+    <string name="teacher_title">Teacher Dashboard</string>
+    <string name="teacher_title_land">Teacher\nDashboard</string>
+    <string name="teacher_subtitle">Manage activities and student photos</string>
+    <string name="teacher_subtitle_land">Manage activities and photos</string>
+
+    <string name="parent_title">Parent Dashboard</string>
+    <string name="parent_title_land">Parent\nDashboard</string>
+    <string name="parent_subtitle">Manage your children and photos</string>
+    <string name="parent_subtitle_land">Manage children and photos</string>
+
+    <string name="btn_create_activity">Create Activity</string>
+    <string name="btn_view_activities">View Activities</string>
+    <string name="btn_register_child">Register Child</string>
+    <string name="btn_reset_privacy">Reset Privacy (Clear Faceset)</string>
+    <string name="btn_reset_privacy_lines">Reset Privacy\n(Clear Faceset)</string>
+    <string name="btn_reset_privacy_land">Reset Privacy</string>
+    <string name="btn_logout">Log Out</string>
+
+    <string name="list_activities_title">Available Activities</string>
+    <string name="list_activities_title_land">Available\nActivities</string>
+    <string name="list_activities_subtitle">Select an activity from the list</string>
+    <string name="list_activities_subtitle_short">Select an option</string>
+    <string name="teacher_list_title">Activity List</string>
+    <string name="teacher_list_title_land">Activity\nList</string>
+    <string name="teacher_list_subtitle">Select an activity to view photos</string>
+
+    <string name="upload_title">Upload Photos</string>
+    <string name="upload_subtitle">Select images (JPG format only)</string>
+    <string name="btn_pick_gallery">1. Select from Gallery</string>
+    <string name="btn_pick_gallery_short">1. Gallery</string>
+    <string name="btn_upload_action">2. Upload Photos</string>
+    <string name="btn_upload_action_short">2. Upload</string>
+    <string name="btn_cancel">Cancel and Return</string>
+    <string name="btn_actions_header">Actions</string>
+
+    <string name="view_photos_title">Activity Photos</string>
+    <string name="view_photos_title_land">Activity\nPhotos</string>
+    <string name="view_photos_subtitle">Memories shared by the teacher</string>
+    <string name="view_photos_subtitle_short">Event memories</string>
+
+</resources>

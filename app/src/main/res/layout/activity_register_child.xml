@@ -30,7 +30,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="Registrar Hijo"
+                    android:text="@string/reg_child_title"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="#4A148C"
@@ -40,7 +40,7 @@
                     android:layout_marginBottom="8dp" />
 
                 <TextView
-                    android:text="Completa los datos del perfil"
+                    android:text="@string/reg_child_subtitle"
                     android:textSize="14sp"
                     android:textColor="#757575"
                     android:gravity="center"
@@ -82,7 +82,7 @@
                 </FrameLayout>
 
                 <TextView
-                    android:text="Formato requerido: JPG"
+                    android:text="@string/reg_child_format_warning"
                     android:textSize="12sp"
                     android:textColor="#9E9E9E"
                     android:gravity="center"
@@ -92,7 +92,7 @@
                     android:layout_marginBottom="24dp" />
 
                 <TextView
-                    android:text="Nombre"
+                    android:text="@string/reg_child_hint_name"
                     android:textSize="12sp"
                     android:textColor="#616161"
                     android:layout_width="wrap_content"
@@ -102,12 +102,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ej. Alejandro"
+                    android:textColor="#333333"
+                    android:textColorHint="#757575"
                     android:inputType="textPersonName|textCapWords"
                     android:paddingBottom="16dp"
                     android:layout_marginBottom="8dp"/>
 
                 <TextView
-                    android:text="Apellido"
+                    android:text="@string/reg_child_hint_surname"
                     android:textSize="12sp"
                     android:textColor="#616161"
                     android:layout_width="wrap_content"
@@ -118,12 +120,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ej. Pérez"
+                    android:textColor="#333333"
+                    android:textColorHint="#757575"
                     android:inputType="textPersonName|textCapWords"
                     android:paddingBottom="16dp"
                     android:layout_marginBottom="8dp"/>
 
                 <TextView
-                    android:text="DNI"
+                    android:text="@string/reg_child_hint_dni"
                     android:textSize="12sp"
                     android:textColor="#616161"
                     android:layout_width="wrap_content"
@@ -133,7 +137,9 @@
                     android:id="@+id/etDNI"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="12345678X"
+                    android:hint="@string/reg_child_hint_dni_example"
+                    android:textColor="#333333"
+                    android:textColorHint="#757575"
                     android:inputType="textCapCharacters"
                     android:maxLength="9"
                     android:paddingBottom="16dp"/>
@@ -143,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Permitir fotos en excursiones"
+                    android:text="@string/reg_child_cb_photos"
                     android:textColor="#424242" />
 
                 <Button
@@ -151,14 +157,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="24dp"
-                    android:text="Guardar Hijo"
+                    android:text="@string/reg_child_btn_save"
+                    android:textColor="@android:color/white"
                     android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:text="Hijos registrados:"
+            android:text="@string/reg_child_list_header"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#333333"
@@ -181,7 +188,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volver atrás"
+            android:text="@string/reg_child_btn_back"
             android:textColor="#6200EE"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"

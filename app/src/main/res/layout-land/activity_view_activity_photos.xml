@@ -6,8 +6,8 @@
     android:background="#F5F5F5"
     android:baselineAligned="false"
     android:orientation="horizontal"
-    android:padding="16dp"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -17,7 +17,7 @@
         android:paddingEnd="16dp">
 
         <TextView
-            android:text="Fotos de la\nActividad"
+            android:text="@string/view_photos_title_land"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#4A148C"
@@ -26,7 +26,7 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:text="Recuerdos del evento"
+            android:text="@string/view_photos_subtitle_short"
             android:textSize="12sp"
             android:textColor="#757575"
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"
-            android:text="Volver"
+            android:text="@string/btn_back_general"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             app:backgroundTint="#4A148C"

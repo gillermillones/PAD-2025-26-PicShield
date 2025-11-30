@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:text="Lista de Actividades"
+            android:text="@string/teacher_list_title"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#4A148C"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:text="Selecciona una actividad para ver las fotos"
+            android:text="@string/teacher_list_subtitle"
             android:textSize="14sp"
             android:textColor="#757575"
             android:layout_marginTop="4dp"
@@ -60,7 +60,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBack"
-        android:text="Volver"
+        android:text="@string/btn_back_general"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         app:backgroundTint="#4A148C"

@@ -6,8 +6,8 @@
     android:background="#F5F5F5"
     android:baselineAligned="false"
     android:orientation="horizontal"
-    android:padding="16dp"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:padding="16dp">
 
     <LinearLayout
         android:id="@+id/headerLayout"
@@ -18,7 +18,7 @@
         android:paddingEnd="16dp">
 
         <TextView
-            android:text="Actividades\nDisponibles"
+            android:text="@string/list_activities_title_land"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#4A148C"
@@ -27,7 +27,7 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:text="Selecciona una opción"
+            android:text="@string/list_activities_subtitle_short"
             android:textSize="14sp"
             android:textColor="#757575"
             android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"
-            android:text="Volver"
+            android:text="@string/btn_back_general"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             app:backgroundTint="#4A148C"
@@ -59,17 +59,14 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.65"
-        android:fillViewport="true"
-        android:background="@drawable/bg_activity_button"
-        android:backgroundTint="#00FFFFFF">
+        android:fillViewport="true">
+
         <LinearLayout
             android:id="@+id/activitiesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
-
-        </LinearLayout>
+            android:paddingBottom="16dp" />
 
     </androidx.core.widget.NestedScrollView>
 

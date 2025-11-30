@@ -6,8 +6,8 @@
     android:background="#F5F5F5"
     android:orientation="horizontal"
     android:baselineAligned="false"
-    android:padding="16dp"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -21,7 +21,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PicShield"
+            android:text="@string/login_app_name"
             android:textColor="#4A148C"
             android:textSize="36sp"
             android:textStyle="bold" />
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Gestiona las fotos escolares\nde forma segura"
+            android:text="@string/login_subtitle_land"
             android:textColor="#757575"
             android:textSize="16sp" />
 
@@ -78,14 +78,16 @@
                             android:layout_marginEnd="16dp"
                             android:buttonTint="#4A148C"
                             android:checked="true"
-                            android:text="Padre" />
+                            android:textColor="#333333"
+                            android:text="@string/login_role_parent_short" />
 
                         <RadioButton
                             android:id="@+id/rbTeacher"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:buttonTint="#4A148C"
-                            android:text="Profesor" />
+                            android:textColor="#333333"
+                            android:text="@string/login_role_teacher_short" />
                     </RadioGroup>
 
                     <EditText
@@ -96,7 +98,9 @@
                         android:background="@android:drawable/editbox_background_normal"
                         android:drawableStart="@android:drawable/ic_dialog_email"
                         android:drawablePadding="8dp"
-                        android:hint="Correo"
+                        android:hint="@string/login_hint_email"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
                         android:inputType="textEmailAddress"
                         android:padding="10dp"
                         android:textSize="14sp" />
@@ -109,7 +113,9 @@
                         android:background="@android:drawable/editbox_background_normal"
                         android:drawableStart="@android:drawable/ic_lock_idle_lock"
                         android:drawablePadding="8dp"
-                        android:hint="Contraseña"
+                        android:hint="@string/login_hint_password"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
                         android:inputType="textPassword"
                         android:padding="10dp"
                         android:textSize="14sp" />
@@ -125,7 +131,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginEnd="8dp"
-                            android:text="Entrar"
+                            android:text="@string/login_btn_enter_short"
+                            android:textColor="@android:color/white"
                             app:backgroundTint="#4A148C"
                             app:cornerRadius="8dp" />
 
@@ -135,7 +142,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Crear"
+                            android:text="@string/login_btn_create_short"
                             android:textColor="#4A148C"
                             app:cornerRadius="8dp"
                             app:strokeColor="#4A148C" />

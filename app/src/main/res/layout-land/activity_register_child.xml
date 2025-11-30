@@ -7,8 +7,8 @@
     android:background="#F5F5F5"
     android:baselineAligned="false"
     android:orientation="horizontal"
-    android:padding="16dp"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -19,7 +19,7 @@
         android:paddingEnd="16dp">
 
         <TextView
-            android:text="Nuevo Perfil"
+            android:text="@string/reg_child_title_land"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#4A148C"
@@ -61,7 +61,7 @@
         </FrameLayout>
 
         <TextView
-            android:text="Formato: JPG"
+            android:text="@string/reg_child_format_warning_short"
             android:textSize="11sp"
             android:textColor="#9E9E9E"
             android:gravity="center"
@@ -97,7 +97,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Datos del niño/a"
+                        android:text="@string/reg_child_subtitle_land"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#4A148C"
@@ -107,9 +107,11 @@
                         android:id="@+id/etFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nombre"
+                        android:hint="@string/reg_child_hint_name"
                         android:inputType="textPersonName|textCapWords"
                         android:background="@android:drawable/editbox_background_normal"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
                         android:padding="10dp"
                         android:textSize="14sp"
                         android:layout_marginBottom="8dp"/>
@@ -118,9 +120,11 @@
                         android:id="@+id/etLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Apellido"
+                        android:hint="@string/reg_child_hint_surname"
                         android:inputType="textPersonName|textCapWords"
                         android:background="@android:drawable/editbox_background_normal"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
                         android:padding="10dp"
                         android:textSize="14sp"
                         android:layout_marginBottom="8dp"/>
@@ -129,10 +133,12 @@
                         android:id="@+id/etDNI"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="DNI"
+                        android:hint="@string/reg_child_hint_dni"
                         android:inputType="textCapCharacters"
                         android:maxLength="9"
                         android:background="@android:drawable/editbox_background_normal"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
                         android:padding="10dp"
                         android:textSize="14sp"/>
 
@@ -141,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Permitir fotos"
+                        android:text="@string/reg_child_cb_photos_short"
                         android:textSize="13sp"
                         android:textColor="#424242" />
 
@@ -156,7 +162,7 @@
                             style="?android:attr/borderlessButtonStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Volver"
+                            android:text="@string/reg_child_btn_back_short"
                             android:textColor="#757575" />
 
                         <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
@@ -165,7 +171,8 @@
                             android:id="@+id/btnSaveChild"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Guardar"
+                            android:text="@string/reg_child_btn_save_short"
+                            android:textColor="@android:color/white"
                             android:backgroundTint="#4A148C"/>
                     </LinearLayout>
 
@@ -175,7 +182,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hijos registrados:"
+                android:text="@string/reg_child_list_header"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#333333"

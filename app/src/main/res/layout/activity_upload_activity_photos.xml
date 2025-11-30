@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:text="Subir Fotos"
+            android:text="@string/upload_title"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#4A148C"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:text="Selecciona imágenes (Solo formato JPG)"
+            android:text="@string/upload_subtitle"
             android:textSize="14sp"
             android:textColor="#757575"
             android:layout_marginTop="4dp"
@@ -52,7 +52,8 @@
         app:cardElevation="16dp"
         app:cardCornerRadius="24dp"
         android:layout_marginBottom="-12dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="@android:color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,11 +68,12 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="1. Seleccionar de Galería"
+                android:text="@string/btn_pick_gallery"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:icon="@android:drawable/ic_menu_gallery"
                 app:iconGravity="textStart"
+                app:iconTint="#4A148C"
                 app:cornerRadius="16dp"
                 app:strokeColor="#4A148C"
                 app:strokeWidth="1dp"
@@ -83,11 +85,12 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="2. Subir Fotos"
+                android:text="@string/btn_upload_action"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:icon="@android:drawable/ic_menu_upload"
                 app:iconGravity="textStart"
+                app:iconTint="@android:color/white"
                 app:cornerRadius="16dp"
                 android:backgroundTint="#4A148C"
                 android:textColor="@android:color/white"
@@ -98,9 +101,10 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cancelar y Volver"
+                android:text="@string/btn_cancel"
                 android:textColor="#757575"
                 app:cornerRadius="12dp"/>
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

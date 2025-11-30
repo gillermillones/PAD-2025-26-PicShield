@@ -7,7 +7,6 @@
     android:background="#F5F5F5"
     android:fitsSystemWindows="true">
 
-    <!-- ScrollView para pantallas pequeñas -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +19,6 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <!-- TARJETA DEL FORMULARIO -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,10 +33,9 @@
                     android:padding="32dp"
                     android:gravity="center_horizontal">
 
-                    <!-- Título / Logo -->
                     <TextView
                         android:id="@+id/tvTitle"
-                        android:text="PicShield"
+                        android:text="@string/login_app_name"
                         android:textSize="32sp"
                         android:textStyle="bold"
                         android:textColor="#4A148C"
@@ -46,16 +43,15 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="Bienvenido de nuevo"
+                        android:text="@string/login_welcome"
                         android:textSize="16sp"
                         android:textColor="#757575"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"/>
 
-                    <!-- Selector de Usuario (Centrado) -->
                     <TextView
-                        android:text="¿Cómo quieres entrar?"
+                        android:text="@string/login_user_type_label"
                         android:textSize="12sp"
                         android:textColor="#9E9E9E"
                         android:layout_width="wrap_content"
@@ -72,7 +68,7 @@
 
                         <RadioButton
                             android:id="@+id/rbParent"
-                            android:text="Soy Padre"
+                            android:text="@string/login_role_parent"
                             android:layout_marginEnd="16dp"
                             android:buttonTint="#4A148C"
                             android:textColor="#333333"
@@ -82,50 +78,52 @@
 
                         <RadioButton
                             android:id="@+id/rbTeacher"
-                            android:text="Soy Profesor"
+                            android:text="@string/login_role_teacher"
                             android:buttonTint="#4A148C"
                             android:textColor="#333333"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </RadioGroup>
 
-                    <!-- Inputs -->
                     <EditText
                         android:id="@+id/etEmail"
-                        android:hint="Correo electrónico"
+                        android:hint="@string/login_hint_email"
                         android:inputType="textEmailAddress"
                         android:background="@android:drawable/editbox_background_normal"
                         android:padding="16dp"
                         android:drawableStart="@android:drawable/ic_dialog_email"
                         android:drawablePadding="12dp"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
 
                     <EditText
                         android:id="@+id/etPassword"
-                        android:hint="Contraseña"
+                        android:hint="@string/login_hint_password"
                         android:inputType="textPassword"
                         android:background="@android:drawable/editbox_background_normal"
                         android:padding="16dp"
                         android:drawableStart="@android:drawable/ic_lock_idle_lock"
                         android:drawablePadding="12dp"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"/>
 
-                    <!-- Botón Login (Principal) -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnLogin"
-                        android:text="Iniciar Sesión"
+                        android:text="@string/login_btn_enter"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:cornerRadius="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:backgroundTint="#4A148C"/>
+                        android:backgroundTint="#4A148C"
+                        android:textColor="@android:color/white"/>
 
-                    <!-- Separador Visual -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -138,7 +136,7 @@
                             android:layout_weight="1"
                             android:background="#E0E0E0"/>
                         <TextView
-                            android:text="O"
+                            android:text="@string/login_separator"
                             android:textColor="#9E9E9E"
                             android:paddingHorizontal="16dp"
                             android:layout_width="wrap_content"
@@ -150,10 +148,9 @@
                             android:background="#E0E0E0"/>
                     </LinearLayout>
 
-                    <!-- Botón Registro (Secundario) -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnRegister"
-                        android:text="Crear cuenta nueva"
+                        android:text="@string/login_btn_create_account"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:textColor="#4A148C"
                         app:strokeColor="#4A148C"
