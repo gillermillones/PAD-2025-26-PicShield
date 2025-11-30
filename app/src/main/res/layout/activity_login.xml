@@ -1,91 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="false"
-    android:paddingTop="?attr/actionBarSize">
+    android:background="#F5F5F5"
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="24dp"
+    <!-- ScrollView para pantallas pequeñas -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="24dp">
 
-        <!-- Título -->
-        <TextView
-            android:id="@+id/tvTitle"
-            android:text="Bienvenido"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:gravity="center"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"/>
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <!-- Tipo de usuario -->
-        <RadioGroup
-            android:id="@+id/rgUserType"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            <!-- TARJETA DEL FORMULARIO -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@android:color/white">
 
-            <RadioButton
-                android:id="@+id/rbParent"
-                android:text="Padre"
-                android:checked="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="32dp"
+                    android:gravity="center_horizontal">
 
-            <RadioButton
-                android:id="@+id/rbTeacher"
-                android:text="Profesor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                    <!-- Título / Logo -->
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:text="PicShield"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="#4A148C"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-        </RadioGroup>
+                    <TextView
+                        android:text="Bienvenido de nuevo"
+                        android:textSize="16sp"
+                        android:textColor="#757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"/>
 
-        <!-- Email -->
-        <EditText
-            android:id="@+id/etEmail"
-            android:hint="Correo electrónico"
-            android:inputType="textEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+                    <!-- Selector de Usuario (Centrado) -->
+                    <TextView
+                        android:text="¿Cómo quieres entrar?"
+                        android:textSize="12sp"
+                        android:textColor="#9E9E9E"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"/>
 
-        <!-- Contraseña -->
-        <EditText
-            android:id="@+id/etPassword"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
+                    <RadioGroup
+                        android:id="@+id/rgUserType"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
 
-        <!-- Botón de Login -->
-        <Button
-            android:id="@+id/btnLogin"
-            android:text="Iniciar sesión"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"/>
+                        <RadioButton
+                            android:id="@+id/rbParent"
+                            android:text="Soy Padre"
+                            android:layout_marginEnd="16dp"
+                            android:buttonTint="#4A148C"
+                            android:textColor="#333333"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:text="o"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="24sp"/>
+                        <RadioButton
+                            android:id="@+id/rbTeacher"
+                            android:text="Soy Profesor"
+                            android:buttonTint="#4A148C"
+                            android:textColor="#333333"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RadioGroup>
 
-        <!-- Botón de Registro -->
-        <Button
-            android:id="@+id/btnRegister"
-            android:text="Registrarse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"/>
+                    <!-- Inputs -->
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:hint="Correo electrónico"
+                        android:inputType="textEmailAddress"
+                        android:background="@android:drawable/editbox_background_normal"
+                        android:padding="16dp"
+                        android:drawableStart="@android:drawable/ic_dialog_email"
+                        android:drawablePadding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
 
-    </LinearLayout>
-</ScrollView>
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:hint="Contraseña"
+                        android:inputType="textPassword"
+                        android:background="@android:drawable/editbox_background_normal"
+                        android:padding="16dp"
+                        android:drawableStart="@android:drawable/ic_lock_idle_lock"
+                        android:drawablePadding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"/>
+
+                    <!-- Botón Login (Principal) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLogin"
+                        android:text="Iniciar Sesión"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:backgroundTint="#4A148C"/>
+
+                    <!-- Separador Visual -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginVertical="24dp">
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:background="#E0E0E0"/>
+                        <TextView
+                            android:text="O"
+                            android:textColor="#9E9E9E"
+                            android:paddingHorizontal="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:background="#E0E0E0"/>
+                    </LinearLayout>
+
+                    <!-- Botón Registro (Secundario) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRegister"
+                        android:text="Crear cuenta nueva"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:textColor="#4A148C"
+                        app:strokeColor="#4A148C"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

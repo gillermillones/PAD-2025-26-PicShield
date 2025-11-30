@@ -4,15 +4,14 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -30,14 +29,18 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
 
     private String activityId;
     private Button btnPickImages, btnUpload, btnBack;
-    private LinearLayout previewContainer;
+
+    // CAMBIO: Usamos RecyclerView en lugar de LinearLayout
+    private RecyclerView recyclerPhotos;
 
     private final List<Uri> selectedImages = new ArrayList<>();
+
+    // LISTA MIXTA PARA EL ADAPTADOR (Puede tener Uris o URLs)
+    private final List<Object> displayList = new ArrayList<>();
+    private PhotosAdapter adapter;
+
     private FirebaseFirestore db;
-
     private FaceManager faceManager;
-
-    // Cola de subida
     private int currentUploadIndex = 0;
 
     private final ActivityResultLauncher<String> pickImagesLauncher =
@@ -63,7 +66,13 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
         btnPickImages = findViewById(R.id.btnPickImages);
         btnUpload = findViewById(R.id.btnUploadPhotos);
         btnBack = findViewById(R.id.btnBack);
-        previewContainer = findViewById(R.id.previewContainer);
+
+        // Configuración del RecyclerView (Cuadrícula de 2 columnas)
+        recyclerPhotos = findViewById(R.id.recyclerPhotos);
+        recyclerPhotos.setLayoutManager(new GridLayoutManager(this, 2));
+
+        adapter = new PhotosAdapter(this, displayList);
+        recyclerPhotos.setAdapter(adapter);
 
         btnPickImages.setOnClickListener(v -> pickImagesLauncher.launch("image/*"));
         btnUpload.setOnClickListener(v -> startSafeUploadProcess());
@@ -72,19 +81,33 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
         loadExistingPhotos();
     }
 
+    // --- MUESTRA LAS FOTOS LOCALES SELECCIONADAS ---
     private void showPreviewImages() {
-        previewContainer.removeAllViews();
-        for (Uri imgUri : selectedImages) {
-            ImageView iv = new ImageView(this);
-            iv.setImageURI(imgUri);
-            iv.setAdjustViewBounds(true);
-            iv.setMaxHeight(350);
-            iv.setPadding(8, 16, 8, 16);
-            previewContainer.addView(iv);
-        }
+        displayList.clear();
+        // Añadimos las URIs locales
+        displayList.addAll(selectedImages);
+        adapter.notifyDataSetChanged();
     }
 
-    // --- PROCESO SEGURO (PIXELADO -> SUBIDA) ---
+    // --- CARGA LAS FOTOS YA SUBIDAS (FIREBASE) ---
+    private void loadExistingPhotos() {
+        db.collection("activities").document(activityId).collection("photos")
+                .orderBy("timestamp")
+                .get()
+                .addOnSuccessListener(query -> {
+                    if (!query.isEmpty()) {
+                        displayList.clear();
+                        for (var doc : query.getDocuments()) {
+                            // Añadimos las URLs (Strings)
+                            String url = doc.getString("url");
+                            if (url != null) displayList.add(url);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+    }
+
+    // --- PROCESO DE SUBIDA (Lógica intacta) ---
     private void startSafeUploadProcess() {
         if (selectedImages.isEmpty()) {
             Toast.makeText(this, "Selecciona imágenes primero", Toast.LENGTH_SHORT).show();
@@ -94,7 +117,6 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
         btnUpload.setEnabled(false);
         btnUpload.setText("Procesando privacidad...");
         currentUploadIndex = 0;
-
         processAndUploadNextImage();
     }
 
@@ -104,7 +126,8 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
             btnUpload.setEnabled(true);
             btnUpload.setText("Subir Fotos");
             selectedImages.clear();
-            previewContainer.removeAllViews();
+
+            // Al terminar, recargamos de Firebase para ver el resultado final
             loadExistingPhotos();
             return;
         }
@@ -112,21 +135,19 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
         Uri currentUri = selectedImages.get(currentUploadIndex);
         File originalFile = FileUtils.getFileFromUri(this, currentUri);
 
-        Toast.makeText(this, "Analizando foto " + (currentUploadIndex + 1) + "...", Toast.LENGTH_SHORT).show();
+        // Notificamos progreso
+        String msg = "Analizando foto " + (currentUploadIndex + 1) + " de " + selectedImages.size();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
-        // 1. Procesar con Face++
         faceManager.processGroupPhoto(originalFile, new FaceManager.GroupPhotoCallback() {
             @Override
             public void onProcessed(Bitmap bitmap) {
                 runOnUiThread(() -> {
-                    // 2. Guardar el bitmap (pixelado o no) en un archivo temporal
                     File safeFile = saveBitmapToTempFile(bitmap);
                     if (safeFile != null) {
-                        // 3. Subir el archivo seguro a Cloudinary
                         uploadToCloudinary(safeFile);
                     } else {
-                        Toast.makeText(UploadActivityPhotosActivity.this, "Error guardando temp", Toast.LENGTH_SHORT).show();
-                        currentUploadIndex++; // saltamos esta
+                        currentUploadIndex++;
                         processAndUploadNextImage();
                     }
                 });
@@ -135,8 +156,7 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
             @Override
             public void onError(String error) {
                 runOnUiThread(() -> {
-                    Toast.makeText(UploadActivityPhotosActivity.this, "Error API: " + error + ". Subiendo original...", Toast.LENGTH_SHORT).show();
-                    // Si falla el pixelado, subimos la original (o podrías abortar)
+                    Toast.makeText(UploadActivityPhotosActivity.this, "Error privacidad. Subiendo original...", Toast.LENGTH_SHORT).show();
                     uploadToCloudinary(originalFile);
                 });
             }
@@ -158,7 +178,6 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
                     @Override
                     public void onError(String requestId, ErrorInfo error) {
                         runOnUiThread(() -> {
-                            Toast.makeText(UploadActivityPhotosActivity.this, "Error Cloudinary", Toast.LENGTH_SHORT).show();
                             currentUploadIndex++;
                             processAndUploadNextImage();
                         });
@@ -176,10 +195,9 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
         db.collection("activities").document(activityId).collection("photos").add(photoData)
                 .addOnSuccessListener(a -> {
                     currentUploadIndex++;
-                    processAndUploadNextImage(); // Siguiente foto
+                    processAndUploadNextImage();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error Firestore", Toast.LENGTH_SHORT).show();
                     currentUploadIndex++;
                     processAndUploadNextImage();
                 });
@@ -197,23 +215,5 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
-    }
-
-    // Métodos loadExistingPhotos y addPhotoToLayout iguales que antes...
-    private void loadExistingPhotos() {
-        db.collection("activities").document(activityId).collection("photos").orderBy("timestamp").get()
-                .addOnSuccessListener(query -> {
-                    for (var doc : query.getDocuments()) {
-                        addPhotoToLayout(doc.getString("url"));
-                    }
-                });
-    }
-
-    private void addPhotoToLayout(String url) {
-        ImageView iv = new ImageView(this);
-        iv.setAdjustViewBounds(true);
-        iv.setPadding(8, 16, 8, 16);
-        Glide.with(this).load(url).into(iv);
-        previewContainer.addView(iv);
     }
 }

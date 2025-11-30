@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PicShield">
 
-        <!-- LOGIN ACTIVITY: primera pantalla -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -25,53 +24,45 @@
             </intent-filter>
         </activity>
 
-        <!-- MAIN ACTIVITY (ya no es la primera pantalla) -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
 
-        <!-- REGISTER ACTIVITY -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
 
-        <!-- PARENT ACTIVITY -->
         <activity
             android:name=".ParentActivity"
-            android:exported = "false" />
+            android:exported="false" />
 
-        <!-- GALLERY ACTIVITY -->
         <activity
             android:name=".GalleryActivity"
-            android:exported = "false" />
+            android:exported="false" />
 
-        <!-- TEACHER ACTIVITY -->
         <activity
             android:name=".TeacherActivity"
-            android:exported = "false" />
+            android:exported="false" />
 
-        <!-- REGISTER CHILD ACTIVITY -->
         <activity
             android:name=".RegisterChildActivity"
-            android:exported = "false" />
+            android:exported="false" />
 
-        <!-- Upload Activity Photos Activity -->
         <activity
             android:name=".UploadActivityPhotosActivity"
             android:exported="false"/>
 
-        <!-- View Photos Activities para el padre -->
         <activity
             android:name=".ViewActivityPhotosActivity"
             android:exported="false" />
 
-        <!-- View lista de activities -->
         <activity
             android:name=".ViewActivitiesActivity"
             android:exported="false"/>
 
-
-
+        <activity
+            android:name=".FullScreenImageActivity"
+            android:exported="false" />
 
     </application>
 

@@ -2,21 +2,30 @@ package es.ucm.fdi.pad.picshield;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewActivityPhotosActivity extends AppCompatActivity {
 
     private String activityId;
-    private LinearLayout previewContainer;
+    private RecyclerView recyclerPhotos;
     private FirebaseFirestore db;
     private Button btnBack;
+
+    private PhotosAdapter adapter;
+
+    // CAMBIO IMPORTANTE: List<String> -> List<Object>
+    // Esto es necesario porque PhotosAdapter ahora espera List<Object>
+    private List<Object> photoList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +34,11 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        previewContainer = findViewById(R.id.photosContainer);
+        recyclerPhotos = findViewById(R.id.recyclerPhotos);
         btnBack = findViewById(R.id.btnBack);
 
-        // Volver atrás
         btnBack.setOnClickListener(v -> finish());
 
-        // Recibir el ID de la actividad
         activityId = getIntent().getStringExtra("activityId");
 
         if (activityId == null) {
@@ -40,15 +47,20 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
             return;
         }
 
+        setupRecyclerView();
         loadPhotos();
     }
 
-    /**
-     * Carga las fotos subidas por el profesor
-     */
-    private void loadPhotos() {
-        previewContainer.removeAllViews();
+    private void setupRecyclerView() {
+        // Configuramos la cuadrícula de 2 columnas
+        recyclerPhotos.setLayoutManager(new GridLayoutManager(this, 2));
 
+        // Ahora no dará error porque photoList es List<Object>
+        adapter = new PhotosAdapter(this, photoList);
+        recyclerPhotos.setAdapter(adapter);
+    }
+
+    private void loadPhotos() {
         db.collection("activities")
                 .document(activityId)
                 .collection("photos")
@@ -59,26 +71,18 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
                         return;
                     }
 
-                    for (var doc : query.getDocuments()) {
+                    photoList.clear();
+                    for (QueryDocumentSnapshot doc : query) {
                         String url = doc.getString("url");
-                        addPhotoToLayout(url);
+                        if (url != null) {
+                            // Añadir un String a una List<Object> es perfectamente válido
+                            photoList.add(url);
+                        }
                     }
+                    adapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error cargando fotos", Toast.LENGTH_SHORT).show();
                 });
-    }
-
-    /**
-     * Muestra cada foto en pantalla
-     */
-    private void addPhotoToLayout(String url) {
-        ImageView iv = new ImageView(this);
-        iv.setAdjustViewBounds(true);
-        iv.setPadding(8, 16, 8, 16);
-
-        Glide.with(this).load(url).into(iv);
-
-        previewContainer.addView(iv);
     }
 }

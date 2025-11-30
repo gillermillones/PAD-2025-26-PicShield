@@ -1,6 +1,7 @@
 package es.ucm.fdi.pad.picshield;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,11 @@ import java.util.List;
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder> {
 
     private Context context;
-    private List<String> urls;
+    private List<Object> items; // Puede contener String (URL) o Uri (Local)
 
-    public PhotosAdapter(Context context, List<String> urls) {
+    public PhotosAdapter(Context context, List<Object> items) {
         this.context = context;
-        this.urls = urls;
+        this.items = items;
     }
 
     @NonNull
@@ -33,12 +34,26 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.PhotoViewH
 
     @Override
     public void onBindViewHolder(@NonNull PhotoViewHolder holder, int position) {
-        Glide.with(context).load(urls.get(position)).into(holder.imgPhoto);
+        Object item = items.get(position);
+
+        // Cargar imagen pequeña
+        Glide.with(context)
+                .load(item)
+                .centerCrop()
+                .into(holder.imgPhoto);
+
+        // --- NUEVO: CLICK PARA ABRIR EN GRANDE ---
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, FullScreenImageActivity.class);
+            // Convertimos el objeto (sea Uri o String) a String para pasarlo
+            intent.putExtra("image_url", item.toString());
+            context.startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return urls.size();
+        return items.size();
     }
 
     static class PhotoViewHolder extends RecyclerView.ViewHolder {

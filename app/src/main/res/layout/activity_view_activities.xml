@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
+    android:background="#F5F5F5"
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
     android:paddingTop="?attr/actionBarSize">
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:text="Actividades Disponibles"
+            android:text="Lista de Actividades"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#4A148C"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:text="Selecciona la actividad que deseas realizar"
+            android:text="Selecciona una actividad para ver las fotos"
             android:textSize="14sp"
             android:textColor="#757575"
             android:layout_marginTop="4dp"
@@ -49,54 +49,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="24dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:text="MontaÃ±a"
-                android:textSize="18sp"
-                android:textColor="#333333"
-                android:textAllCaps="false"
-                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                app:backgroundTint="@android:color/white"
-                app:strokeColor="#D1C4E9"
-                app:strokeWidth="2dp"
-                app:cornerRadius="16dp"
-                android:padding="20dp"
-                android:gravity="center"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.button.MaterialButton
-                android:text="Playa"
-                android:textSize="18sp"
-                android:textColor="#333333"
-                android:textAllCaps="false"
-                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                app:backgroundTint="@android:color/white"
-                app:strokeColor="#D1C4E9"
-                app:strokeWidth="2dp"
-                app:cornerRadius="16dp"
-                android:padding="20dp"
-                android:gravity="center"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.button.MaterialButton
-                android:text="Piscina"
-                android:textSize="18sp"
-                android:textColor="#333333"
-                android:textAllCaps="false"
-                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                app:backgroundTint="@android:color/white"
-                app:strokeColor="#D1C4E9"
-                app:strokeWidth="2dp"
-                app:cornerRadius="16dp"
-                android:padding="20dp"
-                android:gravity="center"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
