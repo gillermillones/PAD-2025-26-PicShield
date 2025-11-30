@@ -67,12 +67,20 @@ public class RegisterChildActivity extends AppCompatActivity {
         rvChildren.setLayoutManager(new LinearLayoutManager(this));
         rvChildren.setAdapter(adapter);
 
+        // Updated Launcher with MIME Type Check
         pickImageLauncher = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
                 uri -> {
-                    if(uri != null){
-                        selectedImageUri = uri;
-                        ivFacePhoto.setImageURI(uri);
+                    if (uri != null) {
+                        String mimeType = getContentResolver().getType(uri);
+                        if (mimeType != null && (mimeType.equals("image/jpeg") || mimeType.equals("image/jpg"))) {
+                            selectedImageUri = uri;
+                            ivFacePhoto.setImageURI(uri);
+                        } else {
+                            Toast.makeText(this, "Error: La imagen debe ser JPG", Toast.LENGTH_LONG).show();
+                            selectedImageUri = null;
+                            ivFacePhoto.setImageResource(android.R.drawable.ic_menu_camera);
+                        }
                     }
                 });
 
@@ -135,7 +143,6 @@ public class RegisterChildActivity extends AppCompatActivity {
         }
     }
 
-    // He modificado este método para recibir los datos y guardar tras subir
     private void uploadImageToCloudinary(Uri imageUri, String firstName, String lastName, String dni, boolean allowPhotos) {
         new Thread(() -> {
             try {
@@ -218,7 +225,6 @@ public class RegisterChildActivity extends AppCompatActivity {
                 });
     }
 
-    // ... extractSecureUrl, clearFields, loadChildren iguales que antes ...
     private String extractSecureUrl(String json){
         int index = json.indexOf("\"secure_url\":\"");
         if(index == -1) return null;

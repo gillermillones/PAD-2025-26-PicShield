@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginBottom="8dp">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="120dp"
@@ -80,6 +80,16 @@
                         android:padding="4dp"
                         tools:ignore="ContentDescription" />
                 </FrameLayout>
+
+                <TextView
+                    android:text="Formato requerido: JPG"
+                    android:textSize="12sp"
+                    android:textColor="#9E9E9E"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp" />
 
                 <TextView
                     android:text="Nombre"
@@ -163,7 +173,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            tools:listitem="@android:layout/simple_list_item_1"
+            tools:listitem="@layout/item_child"
             tools:itemCount="2" />
 
         <Button

@@ -43,12 +43,31 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
     private FaceManager faceManager;
     private int currentUploadIndex = 0;
 
+    // Updated Launcher with Loop for Multiple Selection Validation
     private final ActivityResultLauncher<String> pickImagesLauncher =
             registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), uris -> {
                 if (uris != null && !uris.isEmpty()) {
                     selectedImages.clear();
-                    selectedImages.addAll(uris);
-                    showPreviewImages();
+                    boolean hasInvalidFormat = false;
+
+                    for (Uri uri : uris) {
+                        String mimeType = getContentResolver().getType(uri);
+                        if (mimeType != null && (mimeType.equals("image/jpeg") || mimeType.equals("image/jpg"))) {
+                            selectedImages.add(uri);
+                        } else {
+                            hasInvalidFormat = true;
+                        }
+                    }
+
+                    if (hasInvalidFormat) {
+                        Toast.makeText(this, "Aviso: Algunas imágenes no eran JPG y se han descartado.", Toast.LENGTH_LONG).show();
+                    }
+
+                    if (!selectedImages.isEmpty()) {
+                        showPreviewImages();
+                    } else if (hasInvalidFormat) {
+                        Toast.makeText(this, "Error: Ninguna imagen seleccionada es JPG.", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
 
