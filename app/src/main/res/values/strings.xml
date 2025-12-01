@@ -4,6 +4,7 @@
     <string name="btn_back_general">Volver</string>
     <string name="error_jpg_toast">Error: La imagen debe ser JPG</string>
 
+    <string name="login_app_name" translatable="false">PicShield</string>
     <string name="login_welcome">Bienvenido de nuevo</string>
     <string name="login_subtitle_land">Gestiona las fotos escolares de forma segura</string>
     <string name="login_user_type_label">¿Cómo quieres entrar?</string>
@@ -83,6 +84,16 @@
     <string name="btn_upload_action_short">2. Subir</string>
     <string name="btn_cancel">Cancelar y Volver</string>
     <string name="btn_actions_header">Acciones</string>
+
+    <string name="action_settings">Opciones</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="menu_gallery">Galeria</string>
+    <string name="menu_slideshow">Presentacion</string>
+
+    <string name="nav_header_desc">Imagen</string>
+    <string name="nav_header_title">Texto</string>
+    <string name="nav_header_subtitle">Texto</string>
 
     <string name="view_photos_title">Fotos de la Actividad</string>
     <string name="view_photos_title_land">Fotos de la\nActividad</string>

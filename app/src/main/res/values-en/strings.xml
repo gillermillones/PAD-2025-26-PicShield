@@ -85,6 +85,16 @@
     <string name="btn_cancel">Cancel and Return</string>
     <string name="btn_actions_header">Actions</string>
 
+    <string name="action_settings">Options</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="nav_header_desc">Image</string>
+    <string name="nav_header_title">Text</string>
+    <string name="nav_header_subtitle">Text</string>
+
     <string name="view_photos_title">Activity Photos</string>
     <string name="view_photos_title_land">Activity\nPhotos</string>
     <string name="view_photos_subtitle">Memories shared by the teacher</string>
