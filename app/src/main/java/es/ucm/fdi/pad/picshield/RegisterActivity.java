@@ -15,7 +15,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
 
-    private EditText etEmail, etPassword;
+    private EditText etEmail, etPassword, etRPassword;
     private Button btnRegister, btnBack;
     private RadioGroup rgUserType;
     private RadioButton rbParent, rbTeacher;
@@ -32,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+        etRPassword = findViewById(R.id.etRPassword);
         btnRegister = findViewById(R.id.btnRegister);
         btnBack = findViewById(R.id.btnBack);
         rgUserType = findViewById(R.id.rgUserType);
@@ -43,15 +44,19 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
+            String rpassword = etRPassword.getText().toString().trim();
             int userType = rbParent.isChecked() ? 1 : 0; // 1 = Padre, 0 = Profesor
 
-            if(email.isEmpty() || password.isEmpty()) {
+            if(email.isEmpty() || password.isEmpty() || rpassword.isEmpty()) {
                 Toast.makeText(RegisterActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             if(password.length() < 6) {
                 Toast.makeText(RegisterActivity.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(!(password.equals(rpassword))) {
+                Toast.makeText(RegisterActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                 return;
             }
 

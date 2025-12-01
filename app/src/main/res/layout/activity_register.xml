@@ -110,6 +110,20 @@
                         android:textColorHint="#757575"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+
+                    <EditText
+                        android:id="@+id/etRPassword"
+                        android:hint="@string/register_hint_rpassword"
+                        android:inputType="textPassword"
+                        android:background="@android:drawable/editbox_background_normal"
+                        android:padding="16dp"
+                        android:drawableStart="@android:drawable/ic_lock_idle_lock"
+                        android:drawablePadding="12dp"
+                        android:textColor="#333333"
+                        android:textColorHint="#757575"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"/>
 
                     <com.google.android.material.button.MaterialButton

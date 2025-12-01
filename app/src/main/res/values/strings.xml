@@ -28,6 +28,7 @@
     <string name="register_role_teacher">Profesor</string>
     <string name="register_hint_email">Tu correo electrónico</string>
     <string name="register_hint_password">Elige una contraseña</string>
+    <string name="register_hint_rpassword">Repite la contraseña</string>
     <string name="register_btn_signup">Registrarse</string>
     <string name="register_btn_back">¿Ya tienes cuenta? Inicia sesión</string>
     <string name="register_btn_back_short">Volver</string>

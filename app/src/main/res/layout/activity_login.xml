@@ -50,41 +50,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"/>
 
-                    <TextView
-                        android:text="@string/login_user_type_label"
-                        android:textSize="12sp"
-                        android:textColor="#9E9E9E"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"/>
-
-                    <RadioGroup
-                        android:id="@+id/rgUserType"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp">
-
-                        <RadioButton
-                            android:id="@+id/rbParent"
-                            android:text="@string/login_role_parent"
-                            android:layout_marginEnd="16dp"
-                            android:buttonTint="#4A148C"
-                            android:textColor="#333333"
-                            android:checked="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <RadioButton
-                            android:id="@+id/rbTeacher"
-                            android:text="@string/login_role_teacher"
-                            android:buttonTint="#4A148C"
-                            android:textColor="#333333"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </RadioGroup>
-
                     <EditText
                         android:id="@+id/etEmail"
                         android:hint="@string/login_hint_email"

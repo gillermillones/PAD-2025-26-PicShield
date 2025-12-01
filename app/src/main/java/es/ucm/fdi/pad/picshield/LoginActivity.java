@@ -1,6 +1,9 @@
 package es.ucm.fdi.pad.picshield;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +16,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private Button btnLogin, btnRegister;
-    private RadioGroup rgUserType;
-    private RadioButton rbParent, rbTeacher;
     private FirebaseAuth mAuth;
 
     @Override
@@ -26,9 +27,8 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
-        rgUserType = findViewById(R.id.rgUserType);
-        rbParent = findViewById(R.id.rbParent);
-        rbTeacher = findViewById(R.id.rbTeacher);
+
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(CONNECTIVITY_SERVICE);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -38,6 +38,11 @@ public class LoginActivity extends AppCompatActivity {
 
             if(email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(LoginActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(cm.getActiveNetworkInfo() == null){
+                Toast.makeText(LoginActivity.this, "No tienes conexion a internet", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -97,5 +102,14 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
+    }
+
+    public boolean InternetIsConnected() {
+        try {
+            String command = "ping -c 1 google.com";
+            return (Runtime.getRuntime().exec(command).waitFor() == 0);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

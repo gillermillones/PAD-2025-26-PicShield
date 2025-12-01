@@ -28,6 +28,7 @@
     <string name="register_role_teacher">Teacher</string>
     <string name="register_hint_email">Your email address</string>
     <string name="register_hint_password">Choose a password</string>
+    <string name="register_hint_rpassword">Repeat the password</string>
     <string name="register_btn_signup">Sign Up</string>
     <string name="register_btn_back">Already have an account? Log In</string>
     <string name="register_btn_back_short">Back</string>
