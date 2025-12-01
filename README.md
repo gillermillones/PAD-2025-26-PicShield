@@ -1,0 +1,1 @@
+PicShield es una aplicación móvil desarrollada para dispositivos Android cuyo objetivo es, mediante una API de reconocimiento facial, reconocer caras previamente seleccionadas y censurarlas en las fotos que aparezcan. La aplicación permite a los usuarios registrar personas, asociarles fotografías, almacenar permisos de uso de imagen y consultar actividad visual de cada salida.
