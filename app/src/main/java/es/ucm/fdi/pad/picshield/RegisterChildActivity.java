@@ -34,10 +34,10 @@ public class RegisterChildActivity extends AppCompatActivity {
     private ChildAdapter adapter;
     private ActivityResultLauncher<String> pickImageLauncher;
 
-    // --- FACE++ ---
+    // Face++
     private FaceManager faceManager;
 
-    // --- CLOUDINARY ---
+    // Cloudinary
     private final String CLOUD_NAME = "degsfj3pv";
     private final String UPLOAD_PRESET = "childphoto";
 
@@ -67,7 +67,6 @@ public class RegisterChildActivity extends AppCompatActivity {
         rvChildren.setLayoutManager(new LinearLayoutManager(this));
         rvChildren.setAdapter(adapter);
 
-        // Updated Launcher with MIME Type Check
         pickImageLauncher = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
                 uri -> {
@@ -108,7 +107,7 @@ public class RegisterChildActivity extends AppCompatActivity {
         btnSaveChild.setEnabled(false);
         btnSaveChild.setText("Procesando...");
 
-        // 1. Si NO permite fotos, primero añadimos a Face++
+        // 1. Si no permite fotos, primero añadimos a Face++
         if (!allowPhotos) {
             Toast.makeText(this, "Registrando en privacidad (Face++)...", Toast.LENGTH_SHORT).show();
 

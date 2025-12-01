@@ -23,8 +23,6 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
 
     private PhotosAdapter adapter;
 
-    // CAMBIO IMPORTANTE: List<String> -> List<Object>
-    // Esto es necesario porque PhotosAdapter ahora espera List<Object>
     private List<Object> photoList = new ArrayList<>();
 
     @Override
@@ -55,7 +53,6 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
         // Configuramos la cuadrícula de 2 columnas
         recyclerPhotos.setLayoutManager(new GridLayoutManager(this, 2));
 
-        // Ahora no dará error porque photoList es List<Object>
         adapter = new PhotosAdapter(this, photoList);
         recyclerPhotos.setAdapter(adapter);
     }
@@ -75,7 +72,6 @@ public class ViewActivityPhotosActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot doc : query) {
                         String url = doc.getString("url");
                         if (url != null) {
-                            // Añadir un String a una List<Object> es perfectamente válido
                             photoList.add(url);
                         }
                     }

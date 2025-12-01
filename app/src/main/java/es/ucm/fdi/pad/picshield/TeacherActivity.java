@@ -15,11 +15,11 @@ import java.util.Map;
 
 public class TeacherActivity extends AppCompatActivity {
 
-    private Button btnCreateActivity, btnViewGallery, btnLogout, btnDeleteFaceSet; // <--- Añadido btnDeleteFaceSet
+    private Button btnCreateActivity, btnViewGallery, btnLogout, btnDeleteFaceSet;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private FaceManager faceManager; // <--- Añadido FaceManager
+    private FaceManager faceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,24 +29,24 @@ public class TeacherActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Inicializamos FaceManager
+        // Inicializar FaceManager
         faceManager = new FaceManager(this, new FaceApiClient());
 
         btnCreateActivity = findViewById(R.id.btnCreateActivity);
         btnViewGallery = findViewById(R.id.btnViewGallery);
         btnLogout = findViewById(R.id.btnLogout);
-        btnDeleteFaceSet = findViewById(R.id.btnDeleteFaceSet); // <--- Enlazar botón
+        btnDeleteFaceSet = findViewById(R.id.btnDeleteFaceSet);
 
-        // --- CREAR ACTIVIDAD ---
+        // Crear actividad
         btnCreateActivity.setOnClickListener(v -> openCreateActivityDialog());
 
-        // --- VER GALERÍA ---
+        // Ver actividades
         btnViewGallery.setOnClickListener(v -> {
             Intent intent = new Intent(TeacherActivity.this, GalleryActivity.class);
             startActivity(intent);
         });
 
-        // --- BORRAR FACESET (RESET) ---
+        // Borrar Faceset
         btnDeleteFaceSet.setOnClickListener(v -> {
             Toast.makeText(this, "Borrando FaceSet...", Toast.LENGTH_SHORT).show();
             btnDeleteFaceSet.setEnabled(false); // Evitar doble click
@@ -70,7 +70,7 @@ public class TeacherActivity extends AppCompatActivity {
             });
         });
 
-        // --- LOGOUT ---
+        // Cerrar sesión
         btnLogout.setOnClickListener(v -> {
             mAuth.signOut();
             startActivity(new Intent(TeacherActivity.this, LoginActivity.class));

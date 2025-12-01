@@ -26,7 +26,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.Activity
     @NonNull
     @Override
     public ActivityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflamos el diseño "currado" (item_activity.xml)
+
         View view = LayoutInflater.from(context).inflate(R.layout.item_activity, parent, false);
         return new ActivityViewHolder(view);
     }
@@ -39,7 +39,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.Activity
         String date = (String) activity.get("date");
         String id = (String) activity.get("id");
 
-        // Ponemos el texto. Si es null, ponemos un texto por defecto para que no falle.
+        // Si el texto es null, ponemos un texto por defecto para que no falle.
         holder.tvTitle.setText(title != null ? title : "Sin Título");
         holder.tvDate.setText(date != null ? "Fecha: " + date : "");
 

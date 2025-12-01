@@ -24,7 +24,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ChildViewHol
     @NonNull
     @Override
     public ChildViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflamos el XML nuevo (tarjeta bonita)
+
         View view = LayoutInflater.from(context).inflate(R.layout.item_child, parent, false);
         return new ChildViewHolder(view);
     }
@@ -42,16 +42,14 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ChildViewHol
             Glide.with(context).load(child.getPhotoUrl()).into(holder.ivPhoto);
         }
 
-        // --- LÓGICA DEL SEMÁFORO (Nuevo) ---
         if (child.isAllowPhotos()) {
-            // Si permite fotos -> Icono VERDE
+            // Si permite fotos -> Camarita verde
             holder.ivPhotoStatus.setImageResource(android.R.drawable.ic_menu_camera);
-            holder.ivPhotoStatus.setColorFilter(Color.parseColor("#4CAF50")); // Verde Material Design
+            holder.ivPhotoStatus.setColorFilter(Color.parseColor("#4CAF50"));
         } else {
-            // Si NO permite fotos -> Icono ROJO (o candado/prohibido)
-            // Usamos el mismo icono de cámara pero en rojo para indicar "cuidado"
+            // Si NO permite fotos -> Camarita roja
             holder.ivPhotoStatus.setImageResource(android.R.drawable.ic_menu_camera);
-            holder.ivPhotoStatus.setColorFilter(Color.parseColor("#D32F2F")); // Rojo Material Design
+            holder.ivPhotoStatus.setColorFilter(Color.parseColor("#D32F2F"));
         }
     }
 
@@ -62,7 +60,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ChildViewHol
 
     static class ChildViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDni;
-        ImageView ivPhoto, ivPhotoStatus; // Añadido ivPhotoStatus
+        ImageView ivPhoto, ivPhotoStatus;
 
         public ChildViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +68,6 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ChildViewHol
             tvDni = itemView.findViewById(R.id.tvChildDni);
             ivPhoto = itemView.findViewById(R.id.ivChildPhoto);
 
-            // Enlazamos el icono del semáforo
             ivPhotoStatus = itemView.findViewById(R.id.ivPhotoStatus);
         }
     }

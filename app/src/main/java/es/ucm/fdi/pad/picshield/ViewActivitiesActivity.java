@@ -17,7 +17,7 @@ public class ViewActivitiesActivity extends AppCompatActivity {
 
     private LinearLayout activitiesContainer;
     private FirebaseFirestore db;
-    private Button btnBack; // Aunque en el XML sea MaterialButton, aquí lo tratamos como Button
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,6 @@ public class ViewActivitiesActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         db = FirebaseFirestore.getInstance();
 
-        // Botón volver
         btnBack.setOnClickListener(v -> finish());
 
         loadActivities();
@@ -49,29 +48,27 @@ public class ViewActivitiesActivity extends AppCompatActivity {
 
                         String activityId = doc.getId();
                         String title = doc.getString("title");
-                        // 1. Recuperamos la fecha (asegúrate de que en Firebase se llame "date")
                         String date = doc.getString("date");
 
-                        // 2. EN LUGAR DE 'NEW BUTTON', INFLAMOS EL DISEÑO BONITO
                         // Usamos item_activity.xml, que es el que tiene el título y la fecha
                         View card = getLayoutInflater().inflate(R.layout.item_activity, activitiesContainer, false);
 
-                        // 3. BUSCAMOS LOS TEXTVIEWS DENTRO DE LA TARJETA
+                        // Buscamos los TextViews dentro de la tarjeta
                         TextView tvTitle = card.findViewById(R.id.tvActivityTitle);
                         TextView tvDate = card.findViewById(R.id.tvActivityDate);
 
-                        // 4. PONEMOS LOS DATOS
+                        // Ponemos los datos
                         tvTitle.setText(title != null ? title : "Sin Título");
                         tvDate.setText(date != null ? "Fecha: " + date : "");
 
-                        // 5. HACEMOS QUE LA TARJETA SE PUEDA PULSAR
+                        // Hacemos que la tarjeta se pueda pulsar
                         card.setOnClickListener(v -> {
                             Intent intent = new Intent(ViewActivitiesActivity.this, ViewActivityPhotosActivity.class);
                             intent.putExtra("activityId", activityId);
                             startActivity(intent);
                         });
 
-                        // 6. AÑADIMOS LA TARJETA A LA LISTA
+                        // Añadimos la tarjeta a la vista
                         activitiesContainer.addView(card);
                     }
                 })

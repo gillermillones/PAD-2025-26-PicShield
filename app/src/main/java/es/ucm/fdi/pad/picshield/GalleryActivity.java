@@ -22,7 +22,7 @@ public class GalleryActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private Button btnBack; // Aunque en el XML es MaterialButton, aquí Button funciona bien
+    private Button btnBack;
 
     private GalleryAdapter adapter;
     private List<Map<String, Object>> activities = new ArrayList<>();
@@ -31,18 +31,15 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Asegúrate de que este nombre coincide con tu archivo XML de diseño
         setContentView(R.layout.activity_gallery);
 
-        // Enlazamos con la vista
         btnBack = findViewById(R.id.btnBack);
         recyclerView = findViewById(R.id.recyclerGallery);
         progressBar = findViewById(R.id.progressBarGallery);
 
-        // Acción del botón volver
+        // botón volver
         btnBack.setOnClickListener(v -> finish());
 
-        // Configuración de la lista
         db = FirebaseFirestore.getInstance();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -67,7 +64,6 @@ public class GalleryActivity extends AppCompatActivity {
                         Map<String, Object> activity = new HashMap<>();
                         activity.put("id", doc.getId());
                         activity.put("title", doc.getString("title"));
-                        // Importante: cogemos la fecha para mostrarla en la tarjeta nueva
                         activity.put("date", doc.getString("date"));
 
                         activities.add(activity);

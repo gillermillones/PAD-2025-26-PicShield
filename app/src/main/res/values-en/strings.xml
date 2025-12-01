@@ -100,4 +100,10 @@
     <string name="view_photos_subtitle">Memories shared by the teacher</string>
     <string name="view_photos_subtitle_short">Event memories</string>
 
+    <string name="dialog_create_title">Create Activity</string>
+    <string name="dialog_create_subtitle">Enter event details</string>
+    <string name="dialog_hint_title">Activity Title</string>
+    <string name="dialog_hint_date">Date (dd/mm/yyyy)</string>
+    <string name="dialog_btn_create">Create</string>
+    <string name="dialog_btn_cancel">Cancel</string>
 </resources>

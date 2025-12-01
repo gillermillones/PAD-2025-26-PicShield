@@ -15,7 +15,7 @@ public class MyApp extends Application {
         // Configuración de Cloudinary
         Map<String, String> config = new HashMap<>();
         config.put("cloud_name", "degsfj3pv");
-        config.put("api_key", "145991673621652");       // o si usas unsigned, solo cloud_name + upload_preset
+        config.put("api_key", "145991673621652");
         config.put("api_secret", "CC3gpzIUi0N1BkL9F_hWjctBs7A");
 
         MediaManager.init(this, config);

@@ -3,7 +3,6 @@ package es.ucm.fdi.pad.picshield;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -211,8 +210,7 @@ public class FaceManager {
             processNextFace(index + 1, allFaces, matches, original, callback);
         }
     }
-
-    // --- ESTE ES EL MÉTODO QUE FALTABA ---
+    
     public void deleteFaceSet(ProcessCallback callback) {
         apiClient.deleteFaceSet(FACESET_ID, new Callback() {
             @Override

@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if(task.isSuccessful()) {
                             FirebaseUser user = task.getResult().getUser(); //mAuth.getCurrentUser();
                             if(user != null) {
-                                // Guardar userType en Firestore
+                                // Guardamos userType en Firestore
                                 Map<String, Object> userMap = new HashMap<>();
                                 userMap.put("email", email);
                                 userMap.put("userType", userType); // guardamos 1 o 0
@@ -78,12 +78,12 @@ public class RegisterActivity extends AppCompatActivity {
                                                 startActivity(intent);
                                                 Toast.makeText(RegisterActivity.this, "Registrado correctamente como padre", Toast.LENGTH_SHORT).show();
                                                 finish(); // cerramos RegisterActivity
-                                                //Profesor -> vamos a TeacherActivity
                                             } else {
+                                                //Profesor -> vamos a TeacherActivity
                                                 Intent intent = new Intent(RegisterActivity.this, TeacherActivity.class);
                                                 startActivity(intent);
                                                 Toast.makeText(RegisterActivity.this, "Registrado correctamente como profesor", Toast.LENGTH_SHORT).show();
-                                                finish();
+                                                finish(); // cerramos RegisterActivity
 
                                             }
                                         })

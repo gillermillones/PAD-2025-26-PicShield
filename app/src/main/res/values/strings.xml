@@ -100,4 +100,12 @@
     <string name="view_photos_subtitle">Recuerdos compartidos por el profesor</string>
     <string name="view_photos_subtitle_short">Recuerdos del evento</string>
 
+    <string name="dialog_create_title">Crear Actividad</string>
+    <string name="dialog_create_subtitle">Introduce los datos del nuevo evento</string>
+    <string name="dialog_hint_title">Título de la actividad</string>
+    <string name="dialog_hint_date">Fecha (dd/mm/aaaa)</string>
+    <string name="dialog_btn_create">Crear</string>
+    <string name="dialog_btn_cancel">Cancelar</string>
+
+
 </resources>

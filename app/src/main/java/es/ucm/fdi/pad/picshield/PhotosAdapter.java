@@ -42,7 +42,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.PhotoViewH
                 .centerCrop()
                 .into(holder.imgPhoto);
 
-        // --- NUEVO: CLICK PARA ABRIR EN GRANDE ---
+        // Abrir la imagen de la actividad en grande
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, FullScreenImageActivity.class);
             // Convertimos el objeto (sea Uri o String) a String para pasarlo

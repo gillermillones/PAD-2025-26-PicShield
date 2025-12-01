@@ -1,7 +1,6 @@
 package es.ucm.fdi.pad.picshield;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +30,6 @@ public class FullScreenImageActivity extends AppCompatActivity {
         btnClose.setOnClickListener(v -> finish());
 
         // Opción 2: Cerrar tocando el fondo negro (o la imagen)
-        // Al hacer click en cualquier parte del contenedor principal, cerramos.
         rootLayout.setOnClickListener(v -> finish());
     }
 }

@@ -18,7 +18,7 @@ public class ParentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_parent);
 
         btnRegisterChild = findViewById(R.id.btnRegisterChild);
-        btnViewActivities = findViewById(R.id.btnViewPhotos); // cambiar texto en layout si quieres "Ver Actividades"
+        btnViewActivities = findViewById(R.id.btnViewPhotos);
         btnLogout = findViewById(R.id.btnLogout);
 
         // Botón para registrar un hijo
@@ -27,7 +27,7 @@ public class ParentActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Botón para ver lista de actividades (solo lectura)
+        // Botón para ver lista de actividades
         btnViewActivities.setOnClickListener(v -> {
             Intent intent = new Intent(ParentActivity.this, ViewActivitiesActivity.class);
             startActivity(intent);

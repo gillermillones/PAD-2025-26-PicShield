@@ -30,12 +30,10 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
     private String activityId;
     private Button btnPickImages, btnUpload, btnBack;
 
-    // CAMBIO: Usamos RecyclerView en lugar de LinearLayout
     private RecyclerView recyclerPhotos;
 
     private final List<Uri> selectedImages = new ArrayList<>();
 
-    // LISTA MIXTA PARA EL ADAPTADOR (Puede tener Uris o URLs)
     private final List<Object> displayList = new ArrayList<>();
     private PhotosAdapter adapter;
 
@@ -43,7 +41,6 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
     private FaceManager faceManager;
     private int currentUploadIndex = 0;
 
-    // Updated Launcher with Loop for Multiple Selection Validation
     private final ActivityResultLauncher<String> pickImagesLauncher =
             registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), uris -> {
                 if (uris != null && !uris.isEmpty()) {
@@ -100,15 +97,14 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
         loadExistingPhotos();
     }
 
-    // --- MUESTRA LAS FOTOS LOCALES SELECCIONADAS ---
+    // Muestra las fotos locales seleccionadas
     private void showPreviewImages() {
         displayList.clear();
-        // Añadimos las URIs locales
         displayList.addAll(selectedImages);
         adapter.notifyDataSetChanged();
     }
 
-    // --- CARGA LAS FOTOS YA SUBIDAS (FIREBASE) ---
+    // Carga las fotos ya subidas (Firebase)
     private void loadExistingPhotos() {
         db.collection("activities").document(activityId).collection("photos")
                 .orderBy("timestamp")
@@ -126,7 +122,7 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
                 });
     }
 
-    // --- PROCESO DE SUBIDA (Lógica intacta) ---
+    // Proceso de subida
     private void startSafeUploadProcess() {
         if (selectedImages.isEmpty()) {
             Toast.makeText(this, "Selecciona imágenes primero", Toast.LENGTH_SHORT).show();
@@ -146,7 +142,6 @@ public class UploadActivityPhotosActivity extends AppCompatActivity {
             btnUpload.setText("Subir Fotos");
             selectedImages.clear();
 
-            // Al terminar, recargamos de Firebase para ver el resultado final
             loadExistingPhotos();
             return;
         }
