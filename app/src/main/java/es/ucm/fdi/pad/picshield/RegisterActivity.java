@@ -1,6 +1,7 @@
 package es.ucm.fdi.pad.picshield;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(CONNECTIVITY_SERVICE);
+
         btnRegister.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
@@ -57,6 +60,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
             if(!(password.equals(rpassword))) {
                 Toast.makeText(RegisterActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(cm.getActiveNetworkInfo() == null){
+                Toast.makeText(RegisterActivity.this, "No tienes conexion a internet", Toast.LENGTH_SHORT).show();
                 return;
             }
 
